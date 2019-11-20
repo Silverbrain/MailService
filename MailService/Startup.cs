@@ -57,7 +57,7 @@ namespace MailService
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Mail}/{action=Inbox}/{id?}");
             });
         }
     }
