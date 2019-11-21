@@ -14,6 +14,7 @@ namespace MailService.Areas.Identity.Data
         public String Family { get; set; }
 
         //Unable to determine the relationship represented by navigation property 'ApplicationUser.Mails'
-        public ICollection<Mail> Mails { get; set; }
+        public ICollection<SentMail> SentMails { get; set; }
+        public ICollection<RecievedMail> RecievedMails { get; set; }
     }
 }

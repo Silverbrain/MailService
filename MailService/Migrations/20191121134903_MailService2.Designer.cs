@@ -4,14 +4,16 @@ using MailService.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MailService.Migrations
 {
     [DbContext(typeof(MailServiceContext))]
-    partial class MailServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20191121134903_MailService2")]
+    partial class MailService2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
