@@ -22,7 +22,8 @@
 
         <!--Mail Menu Start-->
         <div class="mail-menu">
-            <button class="button-compose-mail button button-danger button-round" data-toggle="modal" data-target="#modal-compose-mail">نوشتن نامه</button>
+            <!--<button class="button-compose-mail button button-danger button-round" data-toggle="modal" data-target="#modal-compose-mail">نوشتن نامه</button>-->
+            <a class="button-compose-mail button button-danger button-round" asp-action="NewMail" asp-controller="Mail">نوشتن نامه</a>
             <ul>
                 <li><a href="#"><i class="zmdi zmdi-email-open"></i> صندوق ورودی</a></li>
                 <li><a href="#"><i class="zmdi zmdi-mail-send"></i> ارسالی ها</a></li>

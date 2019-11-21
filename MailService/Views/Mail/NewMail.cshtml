@@ -1,0 +1,174 @@
+﻿
+@{
+    ViewData["Title"] = "NewMail";
+}
+
+<div class="content-body">
+
+    <!-- Page Headings Start -->
+    <div class="row justify-content-between align-items-center mb-10">
+
+        <!-- Page Heading Start -->
+        <div class="col-12 col-lg-auto mb-20">
+            <div class="page-heading">
+                <h3>برنامه <span>/ میل</span></h3>
+            </div>
+        </div><!-- Page Heading End -->
+
+    </div>
+    <div class="mail-wrapper">
+
+        <!--Mail Menu Start-->
+        <div class="mail-menu">
+            <!--<button class="button-compose-mail button button-danger button-round" data-toggle="modal" data-target="#modal-compose-mail">نوشتن نامه</button>-->
+            <a class="button-compose-mail button button-danger button-round" asp-action="NewMail" asp-controller="Mail">نوشتن نامه</a>
+            <ul>
+                <li><a href="#"><i class="zmdi zmdi-email-open"></i> صندوق ورودی</a></li>
+                <li><a href="#"><i class="zmdi zmdi-mail-send"></i> ارسالی ها</a></li>
+                <li><a href="#"><i class="zmdi zmdi-file"></i> پیش نویس ها</a></li>
+                <li><a href="#"><i class="zmdi zmdi-cloud-done"></i> صندوق پستی</a></li>
+                <li><a href="#"><i class="zmdi zmdi-star"></i> ستاره دار ها</a></li>
+                <li><a href="#"><i class="zmdi zmdi-comments"></i> نمودار ها</a></li>
+                <li><a href="#"><i class="zmdi zmdi-block"></i> اسپم</a></li>
+                <li><a href="#"><i class="zmdi zmdi-delete"></i> زباله ها</a></li>
+                <li><a href="#"><i class="zmdi zmdi-plus-circle"></i> ایجاد کنید</a></li>
+            </ul>
+        </div>
+        <!--Mail Menu End-->
+        <!--Mail List Container Start-->
+        <div class="mail-container">
+
+            <!--Mail Options Start-->
+            <div class="mail-options">
+
+                <div class="mail-options-group">
+                    <div class="adomx-dropdown">
+                        <button class="mail-button-filter toggle"><i class="zmdi zmdi-filter-list"></i></button>
+                        <ul class="adomx-dropdown-menu">
+                            <li><a href="#">همه</a></li>
+                            <li><a href="#">هیچ</a></li>
+                            <li><a href="#">خواندن</a></li>
+                            <li><a href="#">خوانده نشده</a></li>
+                            <li><a href="#">ستاره دار</a></li>
+                            <li><a href="#">بدون ستاره</a></li>
+                        </ul>
+                    </div>
+                    <button class="mail-button-reply"><i class="zmdi zmdi-mail-reply"></i></button>
+                    <button class="mail-button-refresh"><i class="zmdi zmdi-replay"></i></button>
+                </div>
+
+                <div class="mail-options-group">
+                    <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
+                    <button class="mail-button-archive"><i class="zmdi zmdi-archive"></i></button>
+                    <div class="adomx-dropdown">
+                        <button class="mail-button-category toggle"><i class="zmdi zmdi-folder"></i></button>
+                        <ul class="adomx-dropdown-menu">
+                            <li><span>انتقال به:</span></li>
+                            <li>
+                                <hr>
+                            </li>
+                            <li class="checked"><a href="#"><i class="check"></i> منتقل شده</a></li>
+                            <li><a href="#"><i class="check"></i> پاسخ</a></li>
+                            <li><a href="#"><i class="check"></i> اجتماعی</a></li>
+                            <li><a href="#"><i class="check"></i> فرم ها</a></li>
+                            <li><a href="#"><i class="check"></i> تبلیغات</a></li>
+                            <li>
+                                <hr>
+                            </li>
+                            <li><a href="#">اسپم</a></li>
+                            <li><a href="#">زباله ها</a></li>
+                            <li>
+                                <hr>
+                            </li>
+                            <li><a href="#">ایجاد کنید</a></li>
+                            <li><a href="#">مدیریت فولدر</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mail-options-group">
+                    <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
+                    <div class="adomx-dropdown">
+                        <button class="mail-button-snooze toggle"><i class="zmdi zmdi-alarm-snooze"></i></button>
+                        <ul class="adomx-dropdown-menu">
+                            <li><span>تعویق تا..</span></li>
+                            <li class="checked"><a href="#">امروز بعد <span class="ml-auto">6:00 قبل ظهر</span></a></li>
+                            <li class="checked"><a href="#">فردا <span class="ml-auto">8:00 قبل ظهر</span></a></li>
+                            <li class="checked"><a href="#">هفته بعد <span class="ml-auto">8:00 قبل ظهر</span></a></li>
+                            <li class="checked"><a href="#">هفته های بعد <span class="ml-auto">8:00 قبل ظهر</span></a></li>
+                            <li>
+                                <hr>
+                            </li>
+                            <li><a href="#"><i class="zmdi zmdi-calendar"></i> تاریخ و زمان را انتخاب کنید</a></li>
+                        </ul>
+                    </div>
+                    <div class="adomx-dropdown">
+                        <button class="mail-button-label toggle"><i class="zmdi zmdi-label"></i></button>
+                        <ul class="adomx-dropdown-menu">
+                            <li><span>برچسب به عنوان:</span></li>
+                            <li>
+                                <hr>
+                            </li>
+                            <li class="checked"><a href="#"><i class="check"></i> منتقل شده</a></li>
+                            <li><a href="#"><i class="check"></i> پاسخ</a></li>
+                            <li><a href="#"><i class="check"></i> اجتماعی</a></li>
+                            <li><a href="#"><i class="check"></i> فرم ها</a></li>
+                            <li><a href="#"><i class="check"></i> تبلیغات</a></li>
+                            <li>
+                                <hr>
+                            </li>
+                            <li><a href="#">ایجاد کنید</a></li>
+                            <li><a href="#">مدیریت برچسب ها</a></li>
+                        </ul>
+                    </div>
+                    <div class="adomx-dropdown">
+                        <button class="mail-button-more toggle"><i class="zmdi zmdi-more-vert"></i></button>
+                        <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
+                            <li><a href="#">همه را به عنوان خوانده شده علامت بزن</a></li>
+                            <li><a href="#">به عنوان خوانده شده علامت بزن</a></li>
+                            <li><a href="#">به عنوان "خوانده نشده" علامت گذاری کن</a></li>
+                            <li><a href="#">علامت گذاری به عنوان مهم است</a></li>
+                            <li><a href="#">علامت گذاری به عنوان مهم نیست</a></li>
+                            <li><a href="#">اضافه کردن به وظایف</a></li>
+                            <li><a href="#">اضافه کردن ستاره</a></li>
+                            <li><a href="#">فیلتر کردن پیامهایی مانند اینها</a></li>
+                            <li><a href="#">سکوت</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--Mail Options End-->
+            <!--Mail List Start-->
+            <div class="mail-list">
+                <div class="form">
+                    <form action="#">
+                        <div class="row">
+                            <div class="col-12 mb-30">
+                                <input class="form-control" type="email" placeholder="به">
+                            </div>
+                            <div class="col-12 mb-30">
+                                <input class="form-control" type="email" placeholder="Bcc">
+                            </div>
+                            <div class="col-12 mb-30">
+                                <textarea class="summernote"></textarea>
+                            </div>
+                            <div class="buttons-group col-12">
+                                <button type="button" class="button button-outline button-round button-warning"><i class="zmdi zmdi-attachment-alt"></i> ضمیمه فایل</button>
+                                <button type="button" class="button button-outline button-round button-info">ذخیره پیش نویس</button>
+                                <button type="button" class="button button-round button-primary">ارسال ایمیل</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--Mail List End-->
+
+        </div>
+        <!--Mail List Container End-->
+
+    </div>
+</div>
+
