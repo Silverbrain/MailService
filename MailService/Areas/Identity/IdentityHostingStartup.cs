@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using MailService.Areas.Identity.Data;
 using MailService.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -22,6 +24,18 @@ namespace MailService.Areas.Identity
 
                 services.AddDefaultIdentity<ApplicationUser>()
                     .AddEntityFrameworkStores<MailServiceContext>();
+
+                services.ConfigureApplicationCookie(x =>
+                {
+                    x.Events = new CookieAuthenticationEvents
+                    {
+                        OnRedirectToLogin = y =>
+                        {
+                            y.Response.Redirect("Account/Login");
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
             });
         }
     }

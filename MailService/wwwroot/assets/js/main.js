@@ -360,7 +360,7 @@ function customizer() {
                 $color = $this.data('color');
             customRadioColor.removeClass('active');
             $this.addClass('active');
-            $('#cus-style').attr('href', 'assets/css/style-'+$color+'.css');
+            $('#cus-style').attr('href', '~/assets/css/style-'+$color+'.css');
         });
     });
     
