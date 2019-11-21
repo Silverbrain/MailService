@@ -3,6 +3,8 @@
     ViewData["Title"] = "NewMail";
 }
 
+@model NewMailViewModel
+
 <div class="content-body">
 
     <!-- Page Headings Start -->
@@ -143,21 +145,21 @@
             <!--Mail List Start-->
             <div class="mail-list">
                 <div class="form">
-                    <form action="#">
+                    <form asp-action="SendMail" asp-controller="Mail" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-12 mb-30">
-                                <input class="form-control" type="email" placeholder="به">
+                                <input asp-for="RecieverEmail" class="form-control" type="email" placeholder="به">
                             </div>
                             <div class="col-12 mb-30">
-                                <input class="form-control" type="email" placeholder="Bcc">
+                                <input asp-for="Subject" class="form-control" type="text" placeholder="موضوع">
                             </div>
                             <div class="col-12 mb-30">
-                                <textarea class="summernote"></textarea>
+                                <textarea asp-for="Body" class="summernote"></textarea>
                             </div>
                             <div class="buttons-group col-12">
-                                <button type="button" class="button button-outline button-round button-warning"><i class="zmdi zmdi-attachment-alt"></i> ضمیمه فایل</button>
-                                <button type="button" class="button button-outline button-round button-info">ذخیره پیش نویس</button>
-                                <button type="button" class="button button-round button-primary">ارسال ایمیل</button>
+                                @*<a asp-action="SendMail" asp-controller="Mail" type="button" class="button button-outline button-round button-warning"><i class="zmdi zmdi-attachment-alt"></i> ضمیمه فایل</a>
+                                <a asp-action="SendMail" asp-controller="Mail" type="button" class="button button-outline button-round button-info">ذخیره پیش نویس</a>*@
+                                <button class="button button-round button-primary submit">ارسال</button>
                             </div>
 
                         </div>

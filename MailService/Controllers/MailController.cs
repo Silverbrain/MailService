@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MailService.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,7 @@ namespace MailService.Controllers
             return View();
         }
 
-        public IActionResult SendMail()
+        public IActionResult SendMail(NewMailViewModel model)
         {
             return View();
         }
