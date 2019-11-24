@@ -1,4 +1,9 @@
-﻿<!doctype html>
+﻿@inject UserManager<ApplicationUser> userManager;
+@{
+    ApplicationUser loginUser;
+    loginUser = await userManager.FindByNameAsync(User.Identity.Name);
+}
+<!doctype html>
 <html class="no-js" lang="en">
 
 
@@ -10,30 +15,30 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.ico">
 
     <!-- CSS
     ============================================ -->
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/bootstrap.min.css">
 
     <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="assets/css/vendor/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/vendor/cryptocurrency-icons.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/themify-icons.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/cryptocurrency-icons.css">
 
     <!-- Plugins CSS -->
-    <link rel="stylesheet" href="assets/css/plugins/plugins.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/plugins.css">
 
     <!-- Helper CSS -->
-    <link rel="stylesheet" href="assets/css/helper.css">
+    <link rel="stylesheet" href="~/assets/css/helper.css">
 
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
 
     <!-- Custom Style CSS Only For Demo Purpose -->
-    <link id="cus-style" rel="stylesheet" href="assets/css/style-primary.css">
+    <link id="cus-style" rel="stylesheet" href="~/assets/css/style-primary.css">
 
 </head>
 
@@ -50,8 +55,8 @@
                     <!-- Header Logo (Header Left) Start -->
                     <div class="header-logo col-auto">
                         <a href="index.html">
-                            <img src="assets/images/logo/logo.png" alt="">
-                            <img src="assets/images/logo/logo-light.png" class="logo-light" alt="">
+                            <img src="~/assets/images/logo/logo.png" alt="">
+                            <img src="~/assets/images/logo/logo-light.png" class="logo-light" alt="">
                         </a>
                     </div><!-- Header Logo (Header Left) End -->
                     <!-- Header Right Start -->
@@ -92,15 +97,8 @@
 
                                     <!--Language-->
                                     <li class="adomx-dropdown position-relative col-auto">
-                                        <a class="toggle" href="#"><img class="lang-flag" src="assets/images/flags/flag-1.jpg" alt=""><i class="zmdi zmdi-caret-down drop-arrow"></i></a>
-
-                                        <!-- Dropdown -->
-                                        <ul class="adomx-dropdown-menu dropdown-menu-language">
-                                            <li><a href="#"><img src="assets/images/flags/flag-1.jpg" alt=""> ایرانی</a></li>
-                                            <li><a href="#"><img src="assets/images/flags/flag-2.jpg" alt=""> انگلیسی</a></li>
-                                            <li><a href="#"><img src="assets/images/flags/flag-3.jpg" alt=""> اسپانیایی </a></li>
-                                            <li><a href="#"><img src="assets/images/flags/flag-4.jpg" alt=""> آلمانی</a></li>
-                                        </ul>
+                                        <a href="#" class="
+                                           "><i class="ti-settings"></i></a>
 
                                     </li>
 
@@ -117,7 +115,7 @@
                                                 <ul>
                                                     <li>
                                                         <a href="#">
-                                                            <div class="image"><img src="assets/images/avatar/avatar-2.jpg" alt=""></div>
+                                                            <div class="image"><img src="~/assets/images/avatar/avatar-2.jpg" alt=""></div>
                                                             <div class="content">
                                                                 <h6>زیر: اکانت جدید</h6>
                                                                 <p>تغییرات زیادی در قسمت هایی از آدومکس وجود دارد. </p>
@@ -127,7 +125,7 @@
                                                     </li>
                                                     <li>
                                                         <a href="#">
-                                                            <div class="image"><img src="assets/images/avatar/avatar-1.jpg" alt=""></div>
+                                                            <div class="image"><img src="~/assets/images/avatar/avatar-1.jpg" alt=""></div>
                                                             <div class="content">
                                                                 <h6>زیر: ایمیل پشتیبانی</h6>
                                                                 <p>تغییرات زیادی در قسمت هایی از آدومکس وجود دارد. </p>
@@ -137,7 +135,7 @@
                                                     </li>
                                                     <li>
                                                         <a href="#">
-                                                            <div class="image"><img src="assets/images/avatar/avatar-2.jpg" alt=""></div>
+                                                            <div class="image"><img src="~/assets/images/avatar/avatar-2.jpg" alt=""></div>
                                                             <div class="content">
                                                                 <h6>زیر: درخواست کالا</h6>
                                                                 <p>تغییرات زیادی در قسمت هایی از آدومکس وجود دارد. </p>
@@ -147,7 +145,7 @@
                                                     </li>
                                                     <li>
                                                         <a href="#">
-                                                            <div class="image"><img src="assets/images/avatar/avatar-1.jpg" alt=""></div>
+                                                            <div class="image"><img src="~/assets/images/avatar/avatar-1.jpg" alt=""></div>
                                                             <div class="content">
                                                                 <h6>زیر: ایمیل پشتیبانی</h6>
                                                                 <p>تغییرات زیادی در قسمت هایی از آدومکس وجود دارد. </p>
@@ -246,22 +244,23 @@
                                     </li>
 
                                     <!--User-->
+
                                     <li class="adomx-dropdown col-auto">
                                         <a class="toggle" href="#">
                                             <span class="user">
                                                 <span class="avatar">
-                                                    <img src="assets/images/avatar/avatar-1.jpg" alt="">
+                                                    <img src="~/assets/images/avatar/avatar-1.jpg" alt="">
                                                     <span class="status"></span>
                                                 </span>
-                                                <span class="name">طاهر نصیری</span>
+                                                <span class="name">@loginUser.Name @loginUser.Family</span>
                                             </span>
                                         </a>
 
                                         <!-- Dropdown -->
                                         <div class="adomx-dropdown-menu dropdown-menu-user">
                                             <div class="head">
-                                                <h5 class="name"><a href="#">طاهر نصیری</a></h5>
-                                                <a class="mail" href="#">mailnam@mail.com</a>
+                                                <h5 class="name"><a href="#">@loginUser.Name @loginUser.Family</a></h5>
+                                                <a class="mail" href="#">@loginUser.Email</a>
                                             </div>
                                             <div class="body">
                                                 <ul>
@@ -271,7 +270,7 @@
                                                 </ul>
                                                 <ul>
                                                     <li><a href="#"><i class="zmdi zmdi-settings"></i>تنظیمات</a></li>
-                                                    <li><a href="#"><i class="zmdi zmdi-lock-open"></i>خروج</a></li>
+                                                    <li><a asp-action="LogOut" asp-controller="Account"><i class="zmdi zmdi-lock-open"></i>خروج</a></li>
                                                 </ul>
                                                 <ul>
                                                     <li><a href="#"><i class="zmdi zmdi-paypal"></i>پرداخت ها</a></li>
@@ -437,393 +436,9 @@
 
             </div><!-- Side Header Inner End -->
         </div><!-- Side Header End -->
-        <!-- Content Body Start -->
-        <div class="content-body">
 
-            <!-- Page Headings Start -->
-            <div class="row justify-content-between align-items-center mb-10">
+        @RenderBody();
 
-                <!-- Page Heading Start -->
-                <div class="col-12 col-lg-auto mb-20">
-                    <div class="page-heading">
-                        <h3>برنامه <span>/ میل</span></h3>
-                    </div>
-                </div><!-- Page Heading End -->
-
-            </div><!-- Page Headings End -->
-            <!--Mail Wrapper Start-->
-            <div class="mail-wrapper">
-
-                <!--Mail Menu Start-->
-                <div class="mail-menu">
-                    <button class="button-compose-mail button button-danger button-round" data-toggle="modal" data-target="#modal-compose-mail">نوشتن نامه</button>
-                    <ul>
-                        <li><a href="#"><i class="zmdi zmdi-email-open"></i> صندوق ورودی</a></li>
-                        <li><a href="#"><i class="zmdi zmdi-mail-send"></i> ارسالی ها</a></li>
-                        <li><a href="#"><i class="zmdi zmdi-file"></i> پیش نویس ها</a></li>
-                        <li><a href="#"><i class="zmdi zmdi-cloud-done"></i> صندوق پستی</a></li>
-                        <li><a href="#"><i class="zmdi zmdi-star"></i> ستاره دار ها</a></li>
-                        <li><a href="#"><i class="zmdi zmdi-comments"></i> نمودار ها</a></li>
-                        <li><a href="#"><i class="zmdi zmdi-block"></i> اسپم</a></li>
-                        <li><a href="#"><i class="zmdi zmdi-delete"></i> زباله ها</a></li>
-                        <li><a href="#"><i class="zmdi zmdi-plus-circle"></i> ایجاد کنید</a></li>
-                    </ul>
-                </div>
-                <!--Mail Menu End-->
-                <!--Mail List Container Start-->
-                <div class="mail-container">
-
-                    <!--Mail Options Start-->
-                    <div class="mail-options">
-
-                        <div class="mail-options-group">
-                            <div class="adomx-dropdown">
-                                <button class="mail-button-filter toggle"><i class="zmdi zmdi-filter-list"></i></button>
-                                <ul class="adomx-dropdown-menu">
-                                    <li><a href="#">همه</a></li>
-                                    <li><a href="#">هیچ</a></li>
-                                    <li><a href="#">خواندن</a></li>
-                                    <li><a href="#">خوانده نشده</a></li>
-                                    <li><a href="#">ستاره دار</a></li>
-                                    <li><a href="#">بدون ستاره</a></li>
-                                </ul>
-                            </div>
-                            <button class="mail-button-reply"><i class="zmdi zmdi-mail-reply"></i></button>
-                            <button class="mail-button-refresh"><i class="zmdi zmdi-replay"></i></button>
-                        </div>
-
-                        <div class="mail-options-group">
-                            <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                            <button class="mail-button-archive"><i class="zmdi zmdi-archive"></i></button>
-                            <div class="adomx-dropdown">
-                                <button class="mail-button-category toggle"><i class="zmdi zmdi-folder"></i></button>
-                                <ul class="adomx-dropdown-menu">
-                                    <li><span>انتقال به:</span></li>
-                                    <li>
-                                        <hr>
-                                    </li>
-                                    <li class="checked"><a href="#"><i class="check"></i> منتقل شده</a></li>
-                                    <li><a href="#"><i class="check"></i> پاسخ</a></li>
-                                    <li><a href="#"><i class="check"></i> اجتماعی</a></li>
-                                    <li><a href="#"><i class="check"></i> فرم ها</a></li>
-                                    <li><a href="#"><i class="check"></i> تبلیغات</a></li>
-                                    <li>
-                                        <hr>
-                                    </li>
-                                    <li><a href="#">اسپم</a></li>
-                                    <li><a href="#">زباله ها</a></li>
-                                    <li>
-                                        <hr>
-                                    </li>
-                                    <li><a href="#">ایجاد کنید</a></li>
-                                    <li><a href="#">مدیریت فولدر</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="mail-options-group">
-                            <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                            <div class="adomx-dropdown">
-                                <button class="mail-button-snooze toggle"><i class="zmdi zmdi-alarm-snooze"></i></button>
-                                <ul class="adomx-dropdown-menu">
-                                    <li><span>تعویق تا..</span></li>
-                                    <li class="checked"><a href="#">امروز بعد <span class="ml-auto">6:00 قبل ظهر</span></a></li>
-                                    <li class="checked"><a href="#">فردا <span class="ml-auto">8:00 قبل ظهر</span></a></li>
-                                    <li class="checked"><a href="#">هفته بعد <span class="ml-auto">8:00 قبل ظهر</span></a></li>
-                                    <li class="checked"><a href="#">هفته های بعد <span class="ml-auto">8:00 قبل ظهر</span></a></li>
-                                    <li>
-                                        <hr>
-                                    </li>
-                                    <li><a href="#"><i class="zmdi zmdi-calendar"></i> تاریخ و زمان را انتخاب کنید</a></li>
-                                </ul>
-                            </div>
-                            <div class="adomx-dropdown">
-                                <button class="mail-button-label toggle"><i class="zmdi zmdi-label"></i></button>
-                                <ul class="adomx-dropdown-menu">
-                                    <li><span>برچسب به عنوان:</span></li>
-                                    <li>
-                                        <hr>
-                                    </li>
-                                    <li class="checked"><a href="#"><i class="check"></i> منتقل شده</a></li>
-                                    <li><a href="#"><i class="check"></i> پاسخ</a></li>
-                                    <li><a href="#"><i class="check"></i> اجتماعی</a></li>
-                                    <li><a href="#"><i class="check"></i> فرم ها</a></li>
-                                    <li><a href="#"><i class="check"></i> تبلیغات</a></li>
-                                    <li>
-                                        <hr>
-                                    </li>
-                                    <li><a href="#">ایجاد کنید</a></li>
-                                    <li><a href="#">مدیریت برچسب ها</a></li>
-                                </ul>
-                            </div>
-                            <div class="adomx-dropdown">
-                                <button class="mail-button-more toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                                <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                    <li><a href="#">همه را به عنوان خوانده شده علامت بزن</a></li>
-                                    <li><a href="#">به عنوان خوانده شده علامت بزن</a></li>
-                                    <li><a href="#">به عنوان "خوانده نشده" علامت گذاری کن</a></li>
-                                    <li><a href="#">علامت گذاری به عنوان مهم است</a></li>
-                                    <li><a href="#">علامت گذاری به عنوان مهم نیست</a></li>
-                                    <li><a href="#">اضافه کردن به وظایف</a></li>
-                                    <li><a href="#">اضافه کردن ستاره</a></li>
-                                    <li><a href="#">فیلتر کردن پیامهایی مانند اینها</a></li>
-                                    <li><a href="#">سکوت</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <!--Mail Options End-->
-                    <!--Mail List Start-->
-                    <div class="mail-list">
-
-                        <!--Mail Start-->
-                        <div class="mail">
-
-                            <div class="left">
-                                <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
-                                <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                            </div>
-
-                            <div class="middle">
-
-                                <div class="top">
-                                    <h4 class="name"><a href="single-mail.html">طاهر نصیری</a></h4>
-                                    <span class="date">/  خرداد 1398</span>
-                                </div>
-
-                                <div class="body">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                </div>
-
-                                <div class="bottom">
-                                    <span class="badge badge-outline badge-primary">طراحی</span>
-                                    <span class="badge badge-outline badge-primary">عناصر</span>
-                                </div>
-
-                            </div>
-
-                            <div class="right">
-                                <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                                <div class="adomx-dropdown">
-                                    <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                                    <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                        <li><a href="#">عمل</a></li>
-                                        <li><a href="#">عمل دیگر</a></li>
-                                        <li><a href="#">دیگر عمل ها</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--Mail End-->
-                        <!--Mail Start-->
-                        <div class="mail">
-
-                            <div class="left">
-                                <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
-                                <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                            </div>
-
-                            <div class="middle">
-
-                                <div class="top">
-                                    <h4 class="name"><a href="single-mail.html">جعفر عباسی</a></h4>
-                                    <span class="date">/  خرداد 1398</span>
-                                </div>
-
-                                <div class="body">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                </div>
-
-                                <div class="bottom">
-                                    <span class="badge badge-outline badge-primary">طراحی</span>
-                                    <span class="badge badge-outline badge-primary">عناصر</span>
-                                </div>
-
-                            </div>
-
-                            <div class="right">
-                                <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                                <div class="adomx-dropdown">
-                                    <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                                    <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                        <li><a href="#">عمل</a></li>
-                                        <li><a href="#">عمل دیگر</a></li>
-                                        <li><a href="#">دیگر عمل ها</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--Mail End-->
-                        <!--Mail Start-->
-                        <div class="mail">
-
-                            <div class="left">
-                                <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
-                                <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                            </div>
-
-                            <div class="middle">
-
-                                <div class="top">
-                                    <h4 class="name"><a href="single-mail.html">مجتبی خان</a></h4>
-                                    <span class="date">/  خرداد 1398</span>
-                                </div>
-
-                                <div class="body">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                </div>
-
-                                <div class="bottom">
-                                    <span class="badge badge-outline badge-primary">طراحی</span>
-                                    <span class="badge badge-outline badge-primary">عناصر</span>
-                                </div>
-
-                            </div>
-
-                            <div class="right">
-                                <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                                <div class="adomx-dropdown">
-                                    <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                                    <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                        <li><a href="#">عمل</a></li>
-                                        <li><a href="#">عمل دیگر</a></li>
-                                        <li><a href="#">دیگر عمل ها</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--Mail End-->
-                        <!--Mail Start-->
-                        <div class="mail">
-
-                            <div class="left">
-                                <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
-                                <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                            </div>
-
-                            <div class="middle">
-
-                                <div class="top">
-                                    <h4 class="name"><a href="single-mail.html">فرشید خان</a></h4>
-                                    <span class="date">/  خرداد 1398</span>
-                                </div>
-
-                                <div class="body">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                </div>
-
-                                <div class="bottom">
-                                    <span class="badge badge-outline badge-primary">طراحی</span>
-                                    <span class="badge badge-outline badge-primary">عناصر</span>
-                                </div>
-
-                            </div>
-
-                            <div class="right">
-                                <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                                <div class="adomx-dropdown">
-                                    <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                                    <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                        <li><a href="#">عمل</a></li>
-                                        <li><a href="#">عمل دیگر</a></li>
-                                        <li><a href="#">دیگر عمل ها</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--Mail End-->
-                        <!--Mail Start-->
-                        <div class="mail">
-
-                            <div class="left">
-                                <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
-                                <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                            </div>
-
-                            <div class="middle">
-
-                                <div class="top">
-                                    <h4 class="name"><a href="single-mail.html">صیدرا خان</a></h4>
-                                    <span class="date">/  خرداد 1398</span>
-                                </div>
-
-                                <div class="body">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                </div>
-
-                                <div class="bottom">
-                                    <span class="badge badge-outline badge-primary">طراحی</span>
-                                    <span class="badge badge-outline badge-primary">عناصر</span>
-                                </div>
-
-                            </div>
-
-                            <div class="right">
-                                <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                                <div class="adomx-dropdown">
-                                    <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                                    <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                        <li><a href="#">عمل</a></li>
-                                        <li><a href="#">عمل دیگر</a></li>
-                                        <li><a href="#">دیگر عمل ها</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--Mail End-->
-
-                    </div>
-                    <!--Mail List End-->
-
-                </div>
-                <!--Mail List Container End-->
-
-            </div>
-            <!--Mail Wrapper Start-->
-            <!-- Modal -->
-            <div class="compose-mail-modal modal fade" id="modal-compose-mail">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                    <div class="modal-content">
-
-                        <div class="modal-header">
-                            <h5 class="modal-title">پیام جدید</h5>
-                            <button type="button" class="close" data-dismiss="modal"><i class="zmdi zmdi-close"></i></button>
-                        </div>
-
-                        <div class="form">
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-12 mb-30">
-                                        <input class="form-control" type="email" placeholder="به">
-                                    </div>
-                                    <div class="col-12 mb-30">
-                                        <input class="form-control" type="email" placeholder="Bcc">
-                                    </div>
-                                    <div class="col-12 mb-30">
-                                        <textarea class="summernote"></textarea>
-                                    </div>
-                                    <div class="buttons-group col-12">
-                                        <button type="button" class="button button-outline button-round button-warning"><i class="zmdi zmdi-attachment-alt"></i> ضمیمه فایل</button>
-                                        <button type="button" class="button button-outline button-round button-info">ذخیره پیش نویس</button>
-                                        <button type="button" class="button button-round button-primary">ارسال میل</button>
-                                    </div>
-
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div><!-- Content Body End -->
         <!-- Footer Section Start -->
         <div class="footer-section">
             <div class="container-fluid">
@@ -840,19 +455,19 @@
     <!-- JS
     ============================================ -->
     <!-- Global Vendor, plugins & Activation JS -->
-    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="~/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="~/assets/js/vendor/jquery-3.3.1.min.js"></script>
+    <script src="~/assets/js/vendor/popper.min.js"></script>
+    <script src="~/assets/js/vendor/bootstrap.min.js"></script>
     <!--Plugins JS-->
-    <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/plugins/tippy4.min.js.js"></script>
+    <script src="~/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="~/assets/js/plugins/tippy4.min.js.js"></script>
     <!--Main JS-->
-    <script src="assets/js/main.js"></script>
+    <script src="~/assets/js/main.js"></script>
 
     <!-- Plugins & Activation JS For Only This Page -->
-    <script src="assets/js/plugins/summernote/summernote-bs4.min.js"></script>
-    <script src="assets/js/plugins/summernote/summernote.active.js"></script>
+    <script src="~/assets/js/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/assets/js/plugins/summernote/summernote.active.js"></script>
 
 </body>
 

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "ViewMail";
+    Layout = "~/Views/Shared/_MailLayout.cshtml";
+    System.Globalization.PersianCalendar persianCalendar = new System.Globalization.PersianCalendar();
+}
+
+@model Mail
+
+<div class="single-mail">
+    <!--Top-->
+    <div class="top">
+        <!--Left-->
+        <div class="left">
+            <ul>
+                <li><strong>از طرف</strong> <span>@Model.Sender.Sender.Email</span></li>
+                <li><strong>موضوع</strong> <span>@Model.Subject</span></li>
+            </ul>
+        </div>
+        <!--Right-->
+        <div class="right">
+            <button><i class="zmdi zmdi-print"></i></button>
+            <button><i class="zmdi zmdi-tag-more"></i></button>
+        </div>
+    </div>
+    <!--Bottom-->
+    <div class="bottom">
+        <!--User Start-->
+        <div class="user">
+            <div class="info">
+                <h5 class="name">@Model.Sender.Sender.Name @Model.Sender.Sender.Family</h5>
+                <span class="date">@persianCalendar.GetYear(Model.SentDate)/@persianCalendar.GetMonth(Model.SentDate)/@persianCalendar.GetDayOfMonth(Model.SentDate) @persianCalendar.GetHour(Model.SentDate):@persianCalendar.GetMinute(Model.SentDate)</span>
+            </div>
+        </div>
+        <!--User End-->
+        <!--Body Start-->
+        <div class="body">
+
+            <div class="content">
+                @Html.Raw(Model.Body)
+            </div>
+
+            <div class="buttons">
+                <a href="#" class="button button-info button-round button-outline"><i class="zmdi zmdi-forward"></i>انتقال</a>
+                <a href="#" class="button button-primary button-round button-outline"><i class="zmdi zmdi-mail-reply"></i>پاسخ</a>
+            </div>
+
+        </div>
+        <!--Body End-->
+
+    </div>
+
+</div>
