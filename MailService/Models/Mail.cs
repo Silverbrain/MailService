@@ -10,9 +10,11 @@ namespace MailService.Models
     public class Mail
     {
         public int id { get; set; }
+        public DateTime SentDate { get; set; }
+        public DateTime ReadDate { get; set; }
         public String Subject { get; set; }
         public String Body { get; set; }
-        public bool ReadStatus { get; set; }
+        public bool IsRead { get; set; }
         public SentMail Sender { get; set; }
         public RecievedMail Reciever { get; set; }
     }

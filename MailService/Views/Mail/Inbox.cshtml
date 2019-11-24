@@ -1,8 +1,10 @@
 ﻿
 @{
     ViewData["Title"] = "Inbox";
+    System.Globalization.PersianCalendar persianCalendar = new System.Globalization.PersianCalendar();
 }
 
+@model List<Mail>
 <!-- Content Body Start -->
 <div class="content-body">
 
@@ -91,20 +93,6 @@
                 <div class="mail-options-group">
                     <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
                     <div class="adomx-dropdown">
-                        <button class="mail-button-snooze toggle"><i class="zmdi zmdi-alarm-snooze"></i></button>
-                        <ul class="adomx-dropdown-menu">
-                            <li><span>تعویق تا..</span></li>
-                            <li class="checked"><a href="#">امروز بعد <span class="ml-auto">6:00 قبل ظهر</span></a></li>
-                            <li class="checked"><a href="#">فردا <span class="ml-auto">8:00 قبل ظهر</span></a></li>
-                            <li class="checked"><a href="#">هفته بعد <span class="ml-auto">8:00 قبل ظهر</span></a></li>
-                            <li class="checked"><a href="#">هفته های بعد <span class="ml-auto">8:00 قبل ظهر</span></a></li>
-                            <li>
-                                <hr>
-                            </li>
-                            <li><a href="#"><i class="zmdi zmdi-calendar"></i> تاریخ و زمان را انتخاب کنید</a></li>
-                        </ul>
-                    </div>
-                    <div class="adomx-dropdown">
                         <button class="mail-button-label toggle"><i class="zmdi zmdi-label"></i></button>
                         <ul class="adomx-dropdown-menu">
                             <li><span>برچسب به عنوان:</span></li>
@@ -146,204 +134,47 @@
             <div class="mail-list">
 
                 <!--Mail Start-->
-                <div class="mail">
+                @foreach (var item in Model)
+                {
+                    <div class="mail">
 
-                    <div class="left">
-                        <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
-                        <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                    </div>
-
-                    <div class="middle">
-
-                        <div class="top">
-                            <h4 class="name"><a href="single-mail.html">طاهر نصیری</a></h4>
-                            <span class="date">/  خرداد 1398</span>
+                        <div class="left">
+                            <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
+                            <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
                         </div>
 
-                        <div class="body">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
+                        <div class="middle">
+
+                            <div class="top">
+                                <h4 class="name"><a asp-action="ViewMail" asp-controller="Mail" asp-route-MailId="@item.id">@item.Sender.Sender.Name @item.Sender.Sender.Family</a></h4>
+                                <span class="date">@persianCalendar.GetYear(item.SentDate)/@persianCalendar.GetMonth(item.SentDate)/@persianCalendar.GetDayOfMonth(item.SentDate)</span>
+                            </div>
+
+                            <div class="body">
+                                <p>@item.Subject</p>
+                            </div>
+
+                            <div class="bottom">
+                                <span class="badge badge-outline badge-danger">محرمانه</span>
+                                <span class="badge badge-outline badge-primary">عناصر</span>
+                            </div>
+
                         </div>
 
-                        <div class="bottom">
-                            <span class="badge badge-outline badge-primary">طراحی</span>
-                            <span class="badge badge-outline badge-primary">عناصر</span>
-                        </div>
-
-                    </div>
-
-                    <div class="right">
-                        <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                        <div class="adomx-dropdown">
-                            <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                            <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                <li><a href="#">عمل</a></li>
-                                <li><a href="#">عمل دیگر</a></li>
-                                <li><a href="#">دیگر عمل ها</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <!--Mail End-->
-                <!--Mail Start-->
-                <div class="mail">
-
-                    <div class="left">
-                        <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
-                        <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                    </div>
-
-                    <div class="middle">
-
-                        <div class="top">
-                            <h4 class="name"><a href="single-mail.html">جعفر عباسی</a></h4>
-                            <span class="date">/  خرداد 1398</span>
-                        </div>
-
-                        <div class="body">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                        </div>
-
-                        <div class="bottom">
-                            <span class="badge badge-outline badge-primary">طراحی</span>
-                            <span class="badge badge-outline badge-primary">عناصر</span>
+                        <div class="right">
+                            <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
+                            <div class="adomx-dropdown">
+                                <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
+                                <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
+                                    <li><a href="#">عمل</a></li>
+                                    <li><a href="#">عمل دیگر</a></li>
+                                    <li><a href="#">دیگر عمل ها</a></li>
+                                </ul>
+                            </div>
                         </div>
 
                     </div>
-
-                    <div class="right">
-                        <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                        <div class="adomx-dropdown">
-                            <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                            <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                <li><a href="#">عمل</a></li>
-                                <li><a href="#">عمل دیگر</a></li>
-                                <li><a href="#">دیگر عمل ها</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <!--Mail End-->
-                <!--Mail Start-->
-                <div class="mail">
-
-                    <div class="left">
-                        <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
-                        <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                    </div>
-
-                    <div class="middle">
-
-                        <div class="top">
-                            <h4 class="name"><a href="single-mail.html">مجتبی خان</a></h4>
-                            <span class="date">/  خرداد 1398</span>
-                        </div>
-
-                        <div class="body">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                        </div>
-
-                        <div class="bottom">
-                            <span class="badge badge-outline badge-primary">طراحی</span>
-                            <span class="badge badge-outline badge-primary">عناصر</span>
-                        </div>
-
-                    </div>
-
-                    <div class="right">
-                        <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                        <div class="adomx-dropdown">
-                            <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                            <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                <li><a href="#">عمل</a></li>
-                                <li><a href="#">عمل دیگر</a></li>
-                                <li><a href="#">دیگر عمل ها</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <!--Mail End-->
-                <!--Mail Start-->
-                <div class="mail">
-
-                    <div class="left">
-                        <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
-                        <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                    </div>
-
-                    <div class="middle">
-
-                        <div class="top">
-                            <h4 class="name"><a href="single-mail.html">فرشید خان</a></h4>
-                            <span class="date">/  خرداد 1398</span>
-                        </div>
-
-                        <div class="body">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                        </div>
-
-                        <div class="bottom">
-                            <span class="badge badge-outline badge-primary">طراحی</span>
-                            <span class="badge badge-outline badge-primary">عناصر</span>
-                        </div>
-
-                    </div>
-
-                    <div class="right">
-                        <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                        <div class="adomx-dropdown">
-                            <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                            <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                <li><a href="#">عمل</a></li>
-                                <li><a href="#">عمل دیگر</a></li>
-                                <li><a href="#">دیگر عمل ها</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <!--Mail End-->
-                <!--Mail Start-->
-                <div class="mail">
-
-                    <div class="left">
-                        <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
-                        <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
-                    </div>
-
-                    <div class="middle">
-
-                        <div class="top">
-                            <h4 class="name"><a href="single-mail.html">صیدرا خان</a></h4>
-                            <span class="date">/  خرداد 1398</span>
-                        </div>
-
-                        <div class="body">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                        </div>
-
-                        <div class="bottom">
-                            <span class="badge badge-outline badge-primary">طراحی</span>
-                            <span class="badge badge-outline badge-primary">عناصر</span>
-                        </div>
-
-                    </div>
-
-                    <div class="right">
-                        <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                        <div class="adomx-dropdown">
-                            <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
-                            <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
-                                <li><a href="#">عمل</a></li>
-                                <li><a href="#">عمل دیگر</a></li>
-                                <li><a href="#">دیگر عمل ها</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
+                }
                 <!--Mail End-->
 
             </div>

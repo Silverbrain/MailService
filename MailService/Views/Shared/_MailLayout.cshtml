@@ -1,0 +1,658 @@
+﻿
+@{
+    Layout = null;
+}
+@inject UserManager<ApplicationUser> userManager;
+@{
+    ApplicationUser loginUser;
+    loginUser = await userManager.FindByNameAsync(User.Identity.Name);
+}
+<!doctype html>
+<html class="no-js" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>آدومکس - قالب مدیریتی ریسپانسیو بوت استرپ 4</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.ico">
+
+    <!-- CSS
+    ============================================ -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/assets/css/vendor/bootstrap.min.css">
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="~/assets/css/vendor/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/themify-icons.css">
+    <link rel="stylesheet" href="~/assets/css/vendor/cryptocurrency-icons.css">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="~/assets/css/plugins/plugins.css">
+
+    <!-- Helper CSS -->
+    <link rel="stylesheet" href="~/assets/css/helper.css">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="~/assets/css/style.css">
+
+    <!-- Custom Style CSS Only For Demo Purpose -->
+    <link id="cus-style" rel="stylesheet" href="~/assets/css/style-primary.css">
+
+</head>
+
+<body dir="rtl">
+
+    <div class="main-wrapper">
+
+
+        <!-- Header Section Start -->
+        <div class="header-section">
+            <div class="container-fluid">
+                <div class="row justify-content-between align-items-center">
+
+                    <!-- Header Logo (Header Left) Start -->
+                    <div class="header-logo col-auto">
+                        <a href="index.html">
+                            <img src="~/assets/images/logo/logo.png" alt="">
+                            <img src="~/assets/images/logo/logo-light.png" class="logo-light" alt="">
+                        </a>
+                    </div><!-- Header Logo (Header Left) End -->
+                    <!-- Header Right Start -->
+                    <div class="header-right flex-grow-1 col-auto">
+                        <div class="row justify-content-between align-items-center">
+
+                            <!-- Side Header Toggle & Search Start -->
+                            <div class="col-auto">
+                                <div class="row align-items-center">
+
+                                    <!--Side Header Toggle-->
+                                    <div class="col-auto"><button class="side-header-toggle"><i class="zmdi zmdi-menu"></i></button></div>
+
+                                    <!--Header Search-->
+                                    <div class="col-auto">
+
+                                        <div class="header-search">
+
+                                            <button class="header-search-open d-block d-xl-none"><i class="zmdi zmdi-search"></i></button>
+
+                                            <div class="header-search-form">
+                                                <form action="#">
+                                                    <input type="text" placeholder="جستجو کنید">
+                                                    <button><i class="zmdi zmdi-search"></i></button>
+                                                </form>
+                                                <button class="header-search-close d-block d-xl-none"><i class="zmdi zmdi-close"></i></button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div><!-- Side Header Toggle & Search End -->
+                            <!-- Header Notifications Area Start -->
+                            <div class="col-auto">
+
+                                <ul class="header-notification-area">
+
+                                    <!--Language-->
+                                    <li class="adomx-dropdown position-relative col-auto">
+                                        <a href="#" class="
+                                           "><i class="ti-settings"></i></a>
+
+                                    </li>
+
+                                    <!--Mail-->
+                                    <li class="adomx-dropdown col-auto">
+                                        <a class="toggle" href="#"><i class="zmdi zmdi-email-open"></i><span class="badge"></span></a>
+
+                                        <!-- Dropdown -->
+                                        <div class="adomx-dropdown-menu dropdown-menu-mail">
+                                            <div class="head">
+                                                <h4 class="title">شما 3 ایمیل دارید.</h4>
+                                            </div>
+                                            <div class="body custom-scroll">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">
+                                                            <div class="image"><img src="~/assets/images/avatar/avatar-2.jpg" alt=""></div>
+                                                            <div class="content">
+                                                                <h6>زیر: اکانت جدید</h6>
+                                                                <p>تغییرات زیادی در قسمت هایی از آدومکس وجود دارد. </p>
+                                                            </div>
+                                                            <span class="reply"><i class="zmdi zmdi-mail-reply"></i></span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <div class="image"><img src="~/assets/images/avatar/avatar-1.jpg" alt=""></div>
+                                                            <div class="content">
+                                                                <h6>زیر: ایمیل پشتیبانی</h6>
+                                                                <p>تغییرات زیادی در قسمت هایی از آدومکس وجود دارد. </p>
+                                                            </div>
+                                                            <span class="reply"><i class="zmdi zmdi-mail-reply"></i></span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <div class="image"><img src="~/assets/images/avatar/avatar-2.jpg" alt=""></div>
+                                                            <div class="content">
+                                                                <h6>زیر: درخواست کالا</h6>
+                                                                <p>تغییرات زیادی در قسمت هایی از آدومکس وجود دارد. </p>
+                                                            </div>
+                                                            <span class="reply"><i class="zmdi zmdi-mail-reply"></i></span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <div class="image"><img src="~/assets/images/avatar/avatar-1.jpg" alt=""></div>
+                                                            <div class="content">
+                                                                <h6>زیر: ایمیل پشتیبانی</h6>
+                                                                <p>تغییرات زیادی در قسمت هایی از آدومکس وجود دارد. </p>
+                                                            </div>
+                                                            <span class="reply"><i class="zmdi zmdi-mail-reply"></i></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                    <!--Notification-->
+                                    <li class="adomx-dropdown col-auto">
+                                        <a class="toggle" href="#"><i class="zmdi zmdi-notifications"></i><span class="badge"></span></a>
+
+                                        <!-- Dropdown -->
+                                        <div class="adomx-dropdown-menu dropdown-menu-notifications">
+                                            <div class="head">
+                                                <h5 class="title">شما 4 اعلان جدید دارید.</h5>
+                                            </div>
+                                            <div class="body custom-scroll">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-notifications-none"></i>
+                                                            <p>تغییرات زیادی در صفحات وجود دارد.</p>
+                                                            <span>قبل ظهر 11:00   امروز</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-block"></i>
+                                                            <p>تغییرات زیادی در صفحات وجود دارد.</p>
+                                                            <span>قبل ظهر 11:00   امروز</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-info-outline"></i>
+                                                            <p>تغییرات زیادی در صفحات وجود دارد.</p>
+                                                            <span>قبل ظهر 11:00   امروز</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-shield-security"></i>
+                                                            <p>تغییرات زیادی در صفحات وجود دارد.</p>
+                                                            <span>قبل ظهر 11:00   امروز</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-notifications-none"></i>
+                                                            <p>تغییرات زیادی در صفحات وجود دارد.</p>
+                                                            <span>قبل ظهر 11:00   امروز</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-block"></i>
+                                                            <p>تغییرات زیادی در صفحات وجود دارد.</p>
+                                                            <span>قبل ظهر 11:00   امروز</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-info-outline"></i>
+                                                            <p>تغییرات زیادی در صفحات وجود دارد.</p>
+                                                            <span>قبل ظهر 11:00   امروز</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-shield-security"></i>
+                                                            <p>تغییرات زیادی در صفحات وجود دارد.</p>
+                                                            <span>قبل ظهر 11:00   امروز</span>
+                                                        </a>
+                                                        <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="footer">
+                                                <a href="#" class="view-all">مشاهده همه</a>
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                    <!--User-->
+
+                                    <li class="adomx-dropdown col-auto">
+                                        <a class="toggle" href="#">
+                                            <span class="user">
+                                                <span class="avatar">
+                                                    <img src="~/assets/images/avatar/avatar-1.jpg" alt="">
+                                                    <span class="status"></span>
+                                                </span>
+                                                <span class="name">@loginUser.Name @loginUser.Family</span>
+                                            </span>
+                                        </a>
+
+                                        <!-- Dropdown -->
+                                        <div class="adomx-dropdown-menu dropdown-menu-user">
+                                            <div class="head">
+                                                <h5 class="name"><a href="#">@loginUser.Name @loginUser.Family</a></h5>
+                                                <a class="mail" href="#">@loginUser.Email</a>
+                                            </div>
+                                            <div class="body">
+                                                <ul>
+                                                    <li><a href="#"><i class="zmdi zmdi-account"></i>پروفایل</a></li>
+                                                    <li><a href="#"><i class="zmdi zmdi-email-open"></i>صندوق ورودی</a></li>
+                                                    <li><a href="#"><i class="zmdi zmdi-wallpaper"></i>فعالیت</a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a href="#"><i class="zmdi zmdi-settings"></i>تنظیمات</a></li>
+                                                    <li><a asp-action="LogOut" asp-controller="Account"><i class="zmdi zmdi-lock-open"></i>خروج</a></li>
+                                                </ul>
+                                                <ul>
+                                                    <li><a href="#"><i class="zmdi zmdi-paypal"></i>پرداخت ها</a></li>
+                                                    <li><a href="#"><i class="zmdi zmdi-google-pages"></i>صورتحساب</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                </ul>
+
+                            </div><!-- Header Notifications Area End -->
+
+                        </div>
+                    </div><!-- Header Right End -->
+
+                </div>
+            </div>
+        </div><!-- Header Section End -->
+        <!-- Side Header Start -->
+        <div class="side-header show">
+            <button class="side-header-close"><i class="zmdi zmdi-close"></i></button>
+            <!-- Side Header Inner Start -->
+            <div class="side-header-inner custom-scroll">
+
+                <nav class="side-header-menu" id="side-header-menu">
+                    <ul>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-home"></i> <span>داشبورد</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="index.html"><span>تجارت الکترونیکی (پیش فرض)</span></a></li>
+                                <li><a href="index-crypto.html"><span>کریپتوکارنسی</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="widgets.html"><i class="ti-palette"></i> <span>ابزارک ها</span></a></li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-package"></i> <span>عناصر پایه</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="elements-alerts.html"><span>هشدار ها</span></a></li>
+                                <li><a href="elements-accordions.html"><span>آکاردئون ها</span></a></li>
+                                <li><a href="elements-avatar.html"><span>آواتار</span></a></li>
+                                <li><a href="elements-badge.html"><span>نشانک ها</span></a></li>
+                                <li><a href="elements-buttons.html"><span>دکمه ها</span></a></li>
+                                <li><a href="elements-carousel.html"><span>کرسول</span></a></li>
+                                <li><a href="elements-dropdown.html"><span>افت کشیدن</span></a></li>
+                                <li><a href="elements-list-group.html"><span>فهرست گروه</span></a></li>
+                                <li><a href="elements-media.html"><span>رسانه ها</span></a></li>
+                                <li><a href="elements-modal.html"><span>مودال</span></a></li>
+                                <li><a href="elements-pagination.html"><span>صفحه بندی</span></a></li>
+                                <li><a href="elements-progress.html"><span>نوار پیشرفت</span></a></li>
+                                <li><a href="elements-spinners.html"><span>اسپینرها</span></a></li>
+                                <li><a href="elements-tabs.html"><span>زبانه ها</span></a></li>
+                                <li><a href="elements-tooltip.html"><span>راهنمایی</span></a></li>
+                                <li><a href="elements-typography.html"><span>تایپوگرافی</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-crown"></i> <span>عناصر پیشرفته</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="elements-clipboard.html"><span>کلیپ بورد</span></a></li>
+                                <li><a href="elements-fullcalendar.html"><span>تقویم کامل</span></a></li>
+                                <li><a href="elements-media-player.html"><span>پخش رسانه ای</span></a></li>
+                                <li><a href="elements-sortable.html"><span>قابل مرتب شدن (درگ و دراپ)</span></a></li>
+                                <li><a href="elements-toastr.html"><span>توستر</span></a></li>
+                                <li><a href="elements-rating.html"><span>رتبه بندی</span></a></li>
+                                <li><a href="elements-sweetalert.html"><span>هشدار خوب</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-stamp"></i> <span>آیکن ها</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="icons-cryptocurrency.html"><span>کریپتوکارنسی</span></a></li>
+                                <li><a href="icons-fontawesome.html"><span>فونت عالی</span></a></li>
+                                <li><a href="icons-material.html"><span>آیکن متریال</span></a></li>
+                                <li><a href="icons-themify.html"><span>Themify آیکون</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-notepad"></i> <span>فرم ها</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="form-basic-elements.html"><span>عناصر پایه</span></a></li>
+                                <li><a href="form-checkbox.html"><span>جعبه</span></a></li>
+                                <li><a href="form-date-mask.html"><span>تاریخ و ماسک</span></a></li>
+                                <li><a href="form-editor.html"><span>ویرایشگر</span></a></li>
+                                <li><a href="form-file-upload.html"><span>آپلود فایل</span></a></li>
+                                <li><a href="form-layout.html"><span>طرح بندی</span></a></li>
+                                <li><a href="form-radio.html"><span>رادیو</span></a></li>
+                                <li><a href="form-range-slider.html"><span>اسلایدر محدوده</span></a></li>
+                                <li><a href="form-selects.html"><span>انتخاب ها</span></a></li>
+                                <li><a href="form-switchers.html"><span>سوئیچرها</span></a></li>
+                                <li><a href="form-wizard.html"><span>ویزارد</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-layout"></i> <span>جداول</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="table-basic.html"><span>پایه</span></a></li>
+                                <li><a href="table-data-table.html"><span>جدول داده ها</span></a></li>
+                                <li><a href="table-footable.html"><span>تصویر زمینه</span></a></li>
+                                <li><a href="table-jsgrid.html"><span>جسیجید</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-pie-chart"></i> <span>نمودار</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="chart-chartjs.html"><span>نمودار جی</span></a></li>
+                                <li><a href="chart-echarts.html"><span>نمودار جی 2</span></a></li>
+                                <li><a href="chart-google.html"><span>نمودار گوگل</span></a></li>
+                                <li><a href="chart-morris.html"><span>نمودار مورریس</span></a></li>
+                                <li><a href="chart-sparkline.html"><span>نمودار جزییات</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-map"></i> <span>نقشه ها</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="map-vector.html"><span>نقشه برداری</span></a></li>
+                                <li><a href="map-google.html"><span>نقشه گوگل</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-shopping-cart"></i> <span>تجارت الکترونیکی</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="add-product.html"><span>افزودن محصول</span></a></li>
+                                <li><a href="edit-product.html"><span>ویرایش محصول</span></a></li>
+                                <li><a href="invoice-list.html"><span>فهرست صورتحساب</span></a></li>
+                                <li><a href="invoice-details.html"><span>جزییات صورتحساب</span></a></li>
+                                <li><a href="order-list.html"><span>فهرست سفارشات</span></a></li>
+                                <li><a href="order-details.html"><span>جزییات سفارشات</span></a></li>
+                                <li><a href="manage-products.html"><span>مدیریت محصولات</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-gift"></i> <span>برنامه ها</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="chat.html"><span>چت</span></a></li>
+                                <li><a href="mail.html"><span>میل</span></a></li>
+                                <li><a href="single-mail.html"><span>تک میل</span></a></li>
+                                <li><a href="todo-list.html"><span>لیست های کاری</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-lock"></i> <span>احراز هویت</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="login.html"><span>ورود</span></a></li>
+                                <li><a href="register.html"><span>ثبت نام</span></a></li>
+                                <li><a href="author-profile.html"><span>پروفایل</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub-menu">
+                            <a href="#"><i class="ti-layers"></i> <span>صفحات</span></a>
+                            <ul class="side-header-sub-menu">
+                                <li><a href="blank.html"><span>خالی</span></a></li>
+                                <li><a href="timeline.html"><span>گاهشمار</span></a></li>
+                                <li><a href="pricing.html"><span>قیمت</span></a></li>
+                                <li><a href="error-1.html"><span>خطای-1</span></a></li>
+                                <li><a href="error-2.html"><span>خطای-2</span></a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+
+            </div><!-- Side Header Inner End -->
+        </div><!-- Side Header End -->
+
+        <div class="content-body">
+
+            <!-- Page Headings Start -->
+            <div class="row justify-content-between align-items-center mb-10">
+
+                <!-- Page Heading Start -->
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>داشبورد <span>/ برنامه - ایمیل تک</span></h3>
+                    </div>
+                </div><!-- Page Heading End -->
+
+            </div><!-- Page Headings End -->
+            <!--Mail Wrapper Start-->
+            <div class="mail-wrapper">
+
+                <!--Mail Menu Start-->
+                <div class="mail-menu">
+                    <button class="button-compose-mail button button-danger button-round" data-toggle="modal" data-target="#modal-compose-mail">نوشتن نامه</button>
+                    <ul>
+                        <li><a href="#"><i class="zmdi zmdi-email-open"></i> صندوق ورودی</a></li>
+                        <li><a href="#"><i class="zmdi zmdi-mail-send"></i> ارسال ها</a></li>
+                        <li><a href="#"><i class="zmdi zmdi-file"></i> پیش نویس ها</a></li>
+                        <li><a href="#"><i class="zmdi zmdi-cloud-done"></i> صندوق پستی</a></li>
+                        <li><a href="#"><i class="zmdi zmdi-star"></i> ستاره دار</a></li>
+                        <li><a href="#"><i class="zmdi zmdi-comments"></i> چت ها</a></li>
+                        <li><a href="#"><i class="zmdi zmdi-block"></i> اسپم</a></li>
+                        <li><a href="#"><i class="zmdi zmdi-delete"></i> زباله ها</a></li>
+                        <li><a href="#"><i class="zmdi zmdi-plus-circle"></i> ایجاد جدید</a></li>
+                    </ul>
+                </div>
+                <!--Mail Menu End-->
+                <!--Mail List Container Start-->
+                <div class="mail-container">
+
+                    <!--Mail Options Start-->
+                    <div class="mail-options">
+
+                        <div class="mail-options-group">
+                            <div class="adomx-dropdown">
+                                <button class="mail-button-filter toggle"><i class="zmdi zmdi-filter-list"></i></button>
+                                <ul class="adomx-dropdown-menu">
+                                    <li><a href="#">همه</a></li>
+                                    <li><a href="#">هیچ</a></li>
+                                    <li><a href="#">خواندن</a></li>
+                                    <li><a href="#">خوانده نشده</a></li>
+                                    <li><a href="#">ستار دار</a></li>
+                                    <li><a href="#">بدون ستاره</a></li>
+                                </ul>
+                            </div>
+                            <button class="mail-button-reply"><i class="zmdi zmdi-mail-reply"></i></button>
+                            <button class="mail-button-refresh"><i class="zmdi zmdi-replay"></i></button>
+                        </div>
+
+                        <div class="mail-options-group">
+                            <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
+                            <button class="mail-button-archive"><i class="zmdi zmdi-archive"></i></button>
+                            <div class="adomx-dropdown">
+                                <button class="mail-button-category toggle"><i class="zmdi zmdi-folder"></i></button>
+                                <ul class="adomx-dropdown-menu">
+                                    <li><span>انتقال به:</span></li>
+                                    <li>
+                                        <hr>
+                                    </li>
+                                    <li class="checked"><a href="#"><i class="check"></i> منتقل شده</a></li>
+                                    <li><a href="#"><i class="check"></i> پاسخ داده شده</a></li>
+                                    <li><a href="#"><i class="check"></i> اجتماعی</a></li>
+                                    <li><a href="#"><i class="check"></i> فرم ها</a></li>
+                                    <li><a href="#"><i class="check"></i> تبلیغات</a></li>
+                                    <li>
+                                        <hr>
+                                    </li>
+                                    <li><a href="#">اسپم</a></li>
+                                    <li><a href="#">زباله ها</a></li>
+                                    <li>
+                                        <hr>
+                                    </li>
+                                    <li><a href="#">ایجاد جدید</a></li>
+                                    <li><a href="#">مدیریت فولدر</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mail-options-group">
+                            <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
+                            <div class="adomx-dropdown">
+                                <button class="mail-button-snooze toggle"><i class="zmdi zmdi-alarm-snooze"></i></button>
+                                <ul class="adomx-dropdown-menu">
+                                    <li><span>تعویق تا..</span></li>
+                                    <li class="checked"><a href="#">امروز بعد <span class="ml-auto">6:00 قبل ظهر</span></a></li>
+                                    <li class="checked"><a href="#">فردا <span class="ml-auto">8:00 قبل ظهر</span></a></li>
+                                    <li class="checked"><a href="#">هفته بعد <span class="ml-auto">8:00 قبل ظهر</span></a></li>
+                                    <li class="checked"><a href="#">هفته های بعد <span class="ml-auto">8:00 قبل ظهر</span></a></li>
+                                    <li>
+                                        <hr>
+                                    </li>
+                                    <li><a href="#"><i class="zmdi zmdi-calendar"></i> تاریخ و زمان را انتخاب کنید</a></li>
+                                </ul>
+                            </div>
+                            <div class="adomx-dropdown">
+                                <button class="mail-button-label toggle"><i class="zmdi zmdi-label"></i></button>
+                                <ul class="adomx-dropdown-menu">
+                                    <li><span>برچسب به عنوان:</span></li>
+                                    <li>
+                                        <hr>
+                                    </li>
+                                    <li class="checked"><a href="#"><i class="check"></i> منتقل شده</a></li>
+                                    <li><a href="#"><i class="check"></i> پاسخ داده شده</a></li>
+                                    <li><a href="#"><i class="check"></i> اجتماعی</a></li>
+                                    <li><a href="#"><i class="check"></i> فرم ها</a></li>
+                                    <li><a href="#"><i class="check"></i> تبلیغات</a></li>
+                                    <li>
+                                        <hr>
+                                    </li>
+                                    <li><a href="#">ایجاد جدید</a></li>
+                                    <li><a href="#">مدیریت فولدر</a></li>
+                                </ul>
+                            </div>
+                            <div class="adomx-dropdown">
+                                <button class="mail-button-more toggle"><i class="zmdi zmdi-more-vert"></i></button>
+                                <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
+                                    <li><a href="#">همه را به عنوان خوانده شده علامت بزن</a></li>
+                                    <li><a href="#">به عنوان خوانده شده علامت بزن</a></li>
+                                    <li><a href="#">به عنوان "خوانده نشده" علامت گذاری کن</a></li>
+                                    <li><a href="#">علامت گذاری به عنوان مهم است</a></li>
+                                    <li><a href="#">علامت گذاری به عنوان مهم نیست</a></li>
+                                    <li><a href="#">اضافه کردن به وظایف</a></li>
+                                    <li><a href="#">اضافه کردن ستاره</a></li>
+                                    <li><a href="#">فیلتر کردن پیامهایی مانند اینها</a></li>
+                                    <li><a href="#">سکوت</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--Mail Options End-->
+                    @RenderBody()
+                </div>
+                <!--Mail List Container End-->
+
+            </div>
+            <!--Mail Wrapper Start-->
+            <!-- Modal -->
+            <div class="compose-mail-modal modal fade" id="modal-compose-mail">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">پیام جدید</h5>
+                            <button type="button" class="close" data-dismiss="modal"><i class="zmdi zmdi-close"></i></button>
+                        </div>
+
+                        <div class="form">
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-12 mb-30">
+                                        <input class="form-control" type="email" placeholder="به">
+                                    </div>
+                                    <div class="col-12 mb-30">
+                                        <input class="form-control" type="email" placeholder="Bcc">
+                                    </div>
+                                    <div class="col-12 mb-30">
+                                        <textarea class="summernote" style="display: none;"></textarea><div class="note-editor note-frame card"><div class="note-dropzone">  <div class="note-dropzone-message"></div></div><div class="note-toolbar card-header" role="toolbar" style="position: relative; top: 0px; width: 100%;"><div class="note-btn-group btn-group note-style"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Style" data-original-title="Style"><i class="note-icon-magic"></i></button><div class="dropdown-menu dropdown-style" role="list" aria-label="Style"><a class="dropdown-item" href="#" data-value="p" role="listitem" aria-label="p"><p>Normal</p></a><a class="dropdown-item" href="#" data-value="blockquote" role="listitem" aria-label="[object Object]"><blockquote class="blockquote">Blockquote</blockquote></a><a class="dropdown-item" href="#" data-value="h1" role="listitem" aria-label="h1"><h1>Header 1</h1></a><a class="dropdown-item" href="#" data-value="h2" role="listitem" aria-label="h2"><h2>Header 2</h2></a><a class="dropdown-item" href="#" data-value="h3" role="listitem" aria-label="h3"><h3>Header 3</h3></a><a class="dropdown-item" href="#" data-value="h4" role="listitem" aria-label="h4"><h4>Header 4</h4></a><a class="dropdown-item" href="#" data-value="h5" role="listitem" aria-label="h5"><h5>Header 5</h5></a><a class="dropdown-item" href="#" data-value="h6" role="listitem" aria-label="h6"><h6>Header 6</h6></a></div></div></div><div class="note-btn-group btn-group note-font"><button type="button" class="note-btn btn btn-light btn-sm note-btn-bold" role="button" tabindex="-1" title="" aria-label="Bold (CTRL+B)" data-original-title="Bold (CTRL+B)"><i class="note-icon-bold"></i></button><button type="button" class="note-btn btn btn-light btn-sm note-btn-underline" role="button" tabindex="-1" title="" aria-label="Underline (CTRL+U)" data-original-title="Underline (CTRL+U)"><i class="note-icon-underline"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Remove Font Style (CTRL+\)" data-original-title="Remove Font Style (CTRL+\)"><i class="note-icon-eraser"></i></button></div><div class="note-btn-group btn-group note-fontname"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Font Family" data-original-title="Font Family"><span class="note-current-fontname" style="font-family: IRANSans;">IRANSans</span></button><div class="dropdown-menu note-check dropdown-fontname" role="list" aria-label="Font Family"><a class="dropdown-item" href="#" data-value="Arial" role="listitem" aria-label="Arial"><i class="note-icon-menu-check"></i> <span style="font-family: 'Arial'">Arial</span></a><a class="dropdown-item" href="#" data-value="Arial Black" role="listitem" aria-label="Arial Black"><i class="note-icon-menu-check"></i> <span style="font-family: 'Arial Black'">Arial Black</span></a><a class="dropdown-item" href="#" data-value="Comic Sans MS" role="listitem" aria-label="Comic Sans MS"><i class="note-icon-menu-check"></i> <span style="font-family: 'Comic Sans MS'">Comic Sans MS</span></a><a class="dropdown-item" href="#" data-value="Courier New" role="listitem" aria-label="Courier New"><i class="note-icon-menu-check"></i> <span style="font-family: 'Courier New'">Courier New</span></a><a class="dropdown-item" href="#" data-value="Helvetica" role="listitem" aria-label="Helvetica"><i class="note-icon-menu-check"></i> <span style="font-family: 'Helvetica'">Helvetica</span></a><a class="dropdown-item" href="#" data-value="Impact" role="listitem" aria-label="Impact"><i class="note-icon-menu-check"></i> <span style="font-family: 'Impact'">Impact</span></a><a class="dropdown-item" href="#" data-value="Tahoma" role="listitem" aria-label="Tahoma"><i class="note-icon-menu-check"></i> <span style="font-family: 'Tahoma'">Tahoma</span></a><a class="dropdown-item" href="#" data-value="Times New Roman" role="listitem" aria-label="Times New Roman"><i class="note-icon-menu-check"></i> <span style="font-family: 'Times New Roman'">Times New Roman</span></a><a class="dropdown-item" href="#" data-value="Verdana" role="listitem" aria-label="Verdana"><i class="note-icon-menu-check"></i> <span style="font-family: 'Verdana'">Verdana</span></a><a class="dropdown-item checked" href="#" data-value="IRANSans" role="listitem" aria-label="IRANSans"><i class="note-icon-menu-check"></i> <span style="font-family: 'IRANSans'">IRANSans</span></a></div></div></div><div class="note-btn-group btn-group note-color"><div class="note-btn-group btn-group note-color note-color-all"><button type="button" class="note-btn btn btn-light btn-sm note-current-color-button" role="button" tabindex="-1" title="" aria-label="Recent Color" data-original-title="Recent Color" data-backcolor="#FFFF00"><i class="note-icon-font note-recent-color" style="background-color: rgb(255, 255, 0);"></i></button><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="More Color" data-original-title="More Color"></button><div class="dropdown-menu" role="list"><div class="note-palette">  <div class="note-palette-title">Background Color</div>  <div>    <button type="button" class="note-color-reset btn btn-light" data-event="backColor" data-value="inherit">Transparent    </button>  </div>  <div class="note-holder" data-event="backColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#000000" data-event="backColor" data-value="#000000" title="" aria-label="Black" data-toggle="button" tabindex="-1" data-original-title="Black"></button><button type="button" class="note-color-btn" style="background-color:#424242" data-event="backColor" data-value="#424242" title="" aria-label="Tundora" data-toggle="button" tabindex="-1" data-original-title="Tundora"></button><button type="button" class="note-color-btn" style="background-color:#636363" data-event="backColor" data-value="#636363" title="" aria-label="Dove Gray" data-toggle="button" tabindex="-1" data-original-title="Dove Gray"></button><button type="button" class="note-color-btn" style="background-color:#9C9C94" data-event="backColor" data-value="#9C9C94" title="" aria-label="Star Dust" data-toggle="button" tabindex="-1" data-original-title="Star Dust"></button><button type="button" class="note-color-btn" style="background-color:#CEC6CE" data-event="backColor" data-value="#CEC6CE" title="" aria-label="Pale Slate" data-toggle="button" tabindex="-1" data-original-title="Pale Slate"></button><button type="button" class="note-color-btn" style="background-color:#EFEFEF" data-event="backColor" data-value="#EFEFEF" title="" aria-label="Gallery" data-toggle="button" tabindex="-1" data-original-title="Gallery"></button><button type="button" class="note-color-btn" style="background-color:#F7F7F7" data-event="backColor" data-value="#F7F7F7" title="" aria-label="Alabaster" data-toggle="button" tabindex="-1" data-original-title="Alabaster"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="White" data-toggle="button" tabindex="-1" data-original-title="White"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FF0000" data-event="backColor" data-value="#FF0000" title="" aria-label="Red" data-toggle="button" tabindex="-1" data-original-title="Red"></button><button type="button" class="note-color-btn" style="background-color:#FF9C00" data-event="backColor" data-value="#FF9C00" title="" aria-label="Orange Peel" data-toggle="button" tabindex="-1" data-original-title="Orange Peel"></button><button type="button" class="note-color-btn" style="background-color:#FFFF00" data-event="backColor" data-value="#FFFF00" title="" aria-label="Yellow" data-toggle="button" tabindex="-1" data-original-title="Yellow"></button><button type="button" class="note-color-btn" style="background-color:#00FF00" data-event="backColor" data-value="#00FF00" title="" aria-label="Green" data-toggle="button" tabindex="-1" data-original-title="Green"></button><button type="button" class="note-color-btn" style="background-color:#00FFFF" data-event="backColor" data-value="#00FFFF" title="" aria-label="Cyan" data-toggle="button" tabindex="-1" data-original-title="Cyan"></button><button type="button" class="note-color-btn" style="background-color:#0000FF" data-event="backColor" data-value="#0000FF" title="" aria-label="Blue" data-toggle="button" tabindex="-1" data-original-title="Blue"></button><button type="button" class="note-color-btn" style="background-color:#9C00FF" data-event="backColor" data-value="#9C00FF" title="" aria-label="Electric Violet" data-toggle="button" tabindex="-1" data-original-title="Electric Violet"></button><button type="button" class="note-color-btn" style="background-color:#FF00FF" data-event="backColor" data-value="#FF00FF" title="" aria-label="Magenta" data-toggle="button" tabindex="-1" data-original-title="Magenta"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#F7C6CE" data-event="backColor" data-value="#F7C6CE" title="" aria-label="Azalea" data-toggle="button" tabindex="-1" data-original-title="Azalea"></button><button type="button" class="note-color-btn" style="background-color:#FFE7CE" data-event="backColor" data-value="#FFE7CE" title="" aria-label="Karry" data-toggle="button" tabindex="-1" data-original-title="Karry"></button><button type="button" class="note-color-btn" style="background-color:#FFEFC6" data-event="backColor" data-value="#FFEFC6" title="" aria-label="Egg White" data-toggle="button" tabindex="-1" data-original-title="Egg White"></button><button type="button" class="note-color-btn" style="background-color:#D6EFD6" data-event="backColor" data-value="#D6EFD6" title="" aria-label="Zanah" data-toggle="button" tabindex="-1" data-original-title="Zanah"></button><button type="button" class="note-color-btn" style="background-color:#CEDEE7" data-event="backColor" data-value="#CEDEE7" title="" aria-label="Botticelli" data-toggle="button" tabindex="-1" data-original-title="Botticelli"></button><button type="button" class="note-color-btn" style="background-color:#CEE7F7" data-event="backColor" data-value="#CEE7F7" title="" aria-label="Tropical Blue" data-toggle="button" tabindex="-1" data-original-title="Tropical Blue"></button><button type="button" class="note-color-btn" style="background-color:#D6D6E7" data-event="backColor" data-value="#D6D6E7" title="" aria-label="Mischka" data-toggle="button" tabindex="-1" data-original-title="Mischka"></button><button type="button" class="note-color-btn" style="background-color:#E7D6DE" data-event="backColor" data-value="#E7D6DE" title="" aria-label="Twilight" data-toggle="button" tabindex="-1" data-original-title="Twilight"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E79C9C" data-event="backColor" data-value="#E79C9C" title="" aria-label="Tonys Pink" data-toggle="button" tabindex="-1" data-original-title="Tonys Pink"></button><button type="button" class="note-color-btn" style="background-color:#FFC69C" data-event="backColor" data-value="#FFC69C" title="" aria-label="Peach Orange" data-toggle="button" tabindex="-1" data-original-title="Peach Orange"></button><button type="button" class="note-color-btn" style="background-color:#FFE79C" data-event="backColor" data-value="#FFE79C" title="" aria-label="Cream Brulee" data-toggle="button" tabindex="-1" data-original-title="Cream Brulee"></button><button type="button" class="note-color-btn" style="background-color:#B5D6A5" data-event="backColor" data-value="#B5D6A5" title="" aria-label="Sprout" data-toggle="button" tabindex="-1" data-original-title="Sprout"></button><button type="button" class="note-color-btn" style="background-color:#A5C6CE" data-event="backColor" data-value="#A5C6CE" title="" aria-label="Casper" data-toggle="button" tabindex="-1" data-original-title="Casper"></button><button type="button" class="note-color-btn" style="background-color:#9CC6EF" data-event="backColor" data-value="#9CC6EF" title="" aria-label="Perano" data-toggle="button" tabindex="-1" data-original-title="Perano"></button><button type="button" class="note-color-btn" style="background-color:#B5A5D6" data-event="backColor" data-value="#B5A5D6" title="" aria-label="Cold Purple" data-toggle="button" tabindex="-1" data-original-title="Cold Purple"></button><button type="button" class="note-color-btn" style="background-color:#D6A5BD" data-event="backColor" data-value="#D6A5BD" title="" aria-label="Careys Pink" data-toggle="button" tabindex="-1" data-original-title="Careys Pink"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E76363" data-event="backColor" data-value="#E76363" title="" aria-label="Mandy" data-toggle="button" tabindex="-1" data-original-title="Mandy"></button><button type="button" class="note-color-btn" style="background-color:#F7AD6B" data-event="backColor" data-value="#F7AD6B" title="" aria-label="Rajah" data-toggle="button" tabindex="-1" data-original-title="Rajah"></button><button type="button" class="note-color-btn" style="background-color:#FFD663" data-event="backColor" data-value="#FFD663" title="" aria-label="Dandelion" data-toggle="button" tabindex="-1" data-original-title="Dandelion"></button><button type="button" class="note-color-btn" style="background-color:#94BD7B" data-event="backColor" data-value="#94BD7B" title="" aria-label="Olivine" data-toggle="button" tabindex="-1" data-original-title="Olivine"></button><button type="button" class="note-color-btn" style="background-color:#73A5AD" data-event="backColor" data-value="#73A5AD" title="" aria-label="Gulf Stream" data-toggle="button" tabindex="-1" data-original-title="Gulf Stream"></button><button type="button" class="note-color-btn" style="background-color:#6BADDE" data-event="backColor" data-value="#6BADDE" title="" aria-label="Viking" data-toggle="button" tabindex="-1" data-original-title="Viking"></button><button type="button" class="note-color-btn" style="background-color:#8C7BC6" data-event="backColor" data-value="#8C7BC6" title="" aria-label="Blue Marguerite" data-toggle="button" tabindex="-1" data-original-title="Blue Marguerite"></button><button type="button" class="note-color-btn" style="background-color:#C67BA5" data-event="backColor" data-value="#C67BA5" title="" aria-label="Puce" data-toggle="button" tabindex="-1" data-original-title="Puce"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#CE0000" data-event="backColor" data-value="#CE0000" title="" aria-label="Guardsman Red" data-toggle="button" tabindex="-1" data-original-title="Guardsman Red"></button><button type="button" class="note-color-btn" style="background-color:#E79439" data-event="backColor" data-value="#E79439" title="" aria-label="Fire Bush" data-toggle="button" tabindex="-1" data-original-title="Fire Bush"></button><button type="button" class="note-color-btn" style="background-color:#EFC631" data-event="backColor" data-value="#EFC631" title="" aria-label="Golden Dream" data-toggle="button" tabindex="-1" data-original-title="Golden Dream"></button><button type="button" class="note-color-btn" style="background-color:#6BA54A" data-event="backColor" data-value="#6BA54A" title="" aria-label="Chelsea Cucumber" data-toggle="button" tabindex="-1" data-original-title="Chelsea Cucumber"></button><button type="button" class="note-color-btn" style="background-color:#4A7B8C" data-event="backColor" data-value="#4A7B8C" title="" aria-label="Smalt Blue" data-toggle="button" tabindex="-1" data-original-title="Smalt Blue"></button><button type="button" class="note-color-btn" style="background-color:#3984C6" data-event="backColor" data-value="#3984C6" title="" aria-label="Boston Blue" data-toggle="button" tabindex="-1" data-original-title="Boston Blue"></button><button type="button" class="note-color-btn" style="background-color:#634AA5" data-event="backColor" data-value="#634AA5" title="" aria-label="Butterfly Bush" data-toggle="button" tabindex="-1" data-original-title="Butterfly Bush"></button><button type="button" class="note-color-btn" style="background-color:#A54A7B" data-event="backColor" data-value="#A54A7B" title="" aria-label="Cadillac" data-toggle="button" tabindex="-1" data-original-title="Cadillac"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#9C0000" data-event="backColor" data-value="#9C0000" title="" aria-label="Sangria" data-toggle="button" tabindex="-1" data-original-title="Sangria"></button><button type="button" class="note-color-btn" style="background-color:#B56308" data-event="backColor" data-value="#B56308" title="" aria-label="Mai Tai" data-toggle="button" tabindex="-1" data-original-title="Mai Tai"></button><button type="button" class="note-color-btn" style="background-color:#BD9400" data-event="backColor" data-value="#BD9400" title="" aria-label="Buddha Gold" data-toggle="button" tabindex="-1" data-original-title="Buddha Gold"></button><button type="button" class="note-color-btn" style="background-color:#397B21" data-event="backColor" data-value="#397B21" title="" aria-label="Forest Green" data-toggle="button" tabindex="-1" data-original-title="Forest Green"></button><button type="button" class="note-color-btn" style="background-color:#104A5A" data-event="backColor" data-value="#104A5A" title="" aria-label="Eden" data-toggle="button" tabindex="-1" data-original-title="Eden"></button><button type="button" class="note-color-btn" style="background-color:#085294" data-event="backColor" data-value="#085294" title="" aria-label="Venice Blue" data-toggle="button" tabindex="-1" data-original-title="Venice Blue"></button><button type="button" class="note-color-btn" style="background-color:#311873" data-event="backColor" data-value="#311873" title="" aria-label="Meteorite" data-toggle="button" tabindex="-1" data-original-title="Meteorite"></button><button type="button" class="note-color-btn" style="background-color:#731842" data-event="backColor" data-value="#731842" title="" aria-label="Claret" data-toggle="button" tabindex="-1" data-original-title="Claret"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#630000" data-event="backColor" data-value="#630000" title="" aria-label="Rosewood" data-toggle="button" tabindex="-1" data-original-title="Rosewood"></button><button type="button" class="note-color-btn" style="background-color:#7B3900" data-event="backColor" data-value="#7B3900" title="" aria-label="Cinnamon" data-toggle="button" tabindex="-1" data-original-title="Cinnamon"></button><button type="button" class="note-color-btn" style="background-color:#846300" data-event="backColor" data-value="#846300" title="" aria-label="Olive" data-toggle="button" tabindex="-1" data-original-title="Olive"></button><button type="button" class="note-color-btn" style="background-color:#295218" data-event="backColor" data-value="#295218" title="" aria-label="Parsley" data-toggle="button" tabindex="-1" data-original-title="Parsley"></button><button type="button" class="note-color-btn" style="background-color:#083139" data-event="backColor" data-value="#083139" title="" aria-label="Tiber" data-toggle="button" tabindex="-1" data-original-title="Tiber"></button><button type="button" class="note-color-btn" style="background-color:#003163" data-event="backColor" data-value="#003163" title="" aria-label="Midnight Blue" data-toggle="button" tabindex="-1" data-original-title="Midnight Blue"></button><button type="button" class="note-color-btn" style="background-color:#21104A" data-event="backColor" data-value="#21104A" title="" aria-label="Valentino" data-toggle="button" tabindex="-1" data-original-title="Valentino"></button><button type="button" class="note-color-btn" style="background-color:#4A1031" data-event="backColor" data-value="#4A1031" title="" aria-label="Loulou" data-toggle="button" tabindex="-1" data-original-title="Loulou"></button></div></div></div>  <div>    <button type="button" class="note-color-select btn" data-event="openPalette" data-value="backColorPicker">Select    </button>    <input type="color" id="backColorPicker" class="note-btn note-color-select-btn" value="#FFFF00" data-event="backColorPalette">  </div>  <div class="note-holder-custom" id="backColorPalette" data-event="backColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button></div></div></div></div><div class="note-palette">  <div class="note-palette-title">Foreground Color</div>  <div>    <button type="button" class="note-color-reset btn btn-light" data-event="removeFormat" data-value="foreColor">Reset to default    </button>  </div>  <div class="note-holder" data-event="foreColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#000000" data-event="foreColor" data-value="#000000" title="" aria-label="Black" data-toggle="button" tabindex="-1" data-original-title="Black"></button><button type="button" class="note-color-btn" style="background-color:#424242" data-event="foreColor" data-value="#424242" title="" aria-label="Tundora" data-toggle="button" tabindex="-1" data-original-title="Tundora"></button><button type="button" class="note-color-btn" style="background-color:#636363" data-event="foreColor" data-value="#636363" title="" aria-label="Dove Gray" data-toggle="button" tabindex="-1" data-original-title="Dove Gray"></button><button type="button" class="note-color-btn" style="background-color:#9C9C94" data-event="foreColor" data-value="#9C9C94" title="" aria-label="Star Dust" data-toggle="button" tabindex="-1" data-original-title="Star Dust"></button><button type="button" class="note-color-btn" style="background-color:#CEC6CE" data-event="foreColor" data-value="#CEC6CE" title="" aria-label="Pale Slate" data-toggle="button" tabindex="-1" data-original-title="Pale Slate"></button><button type="button" class="note-color-btn" style="background-color:#EFEFEF" data-event="foreColor" data-value="#EFEFEF" title="" aria-label="Gallery" data-toggle="button" tabindex="-1" data-original-title="Gallery"></button><button type="button" class="note-color-btn" style="background-color:#F7F7F7" data-event="foreColor" data-value="#F7F7F7" title="" aria-label="Alabaster" data-toggle="button" tabindex="-1" data-original-title="Alabaster"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="White" data-toggle="button" tabindex="-1" data-original-title="White"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FF0000" data-event="foreColor" data-value="#FF0000" title="" aria-label="Red" data-toggle="button" tabindex="-1" data-original-title="Red"></button><button type="button" class="note-color-btn" style="background-color:#FF9C00" data-event="foreColor" data-value="#FF9C00" title="" aria-label="Orange Peel" data-toggle="button" tabindex="-1" data-original-title="Orange Peel"></button><button type="button" class="note-color-btn" style="background-color:#FFFF00" data-event="foreColor" data-value="#FFFF00" title="" aria-label="Yellow" data-toggle="button" tabindex="-1" data-original-title="Yellow"></button><button type="button" class="note-color-btn" style="background-color:#00FF00" data-event="foreColor" data-value="#00FF00" title="" aria-label="Green" data-toggle="button" tabindex="-1" data-original-title="Green"></button><button type="button" class="note-color-btn" style="background-color:#00FFFF" data-event="foreColor" data-value="#00FFFF" title="" aria-label="Cyan" data-toggle="button" tabindex="-1" data-original-title="Cyan"></button><button type="button" class="note-color-btn" style="background-color:#0000FF" data-event="foreColor" data-value="#0000FF" title="" aria-label="Blue" data-toggle="button" tabindex="-1" data-original-title="Blue"></button><button type="button" class="note-color-btn" style="background-color:#9C00FF" data-event="foreColor" data-value="#9C00FF" title="" aria-label="Electric Violet" data-toggle="button" tabindex="-1" data-original-title="Electric Violet"></button><button type="button" class="note-color-btn" style="background-color:#FF00FF" data-event="foreColor" data-value="#FF00FF" title="" aria-label="Magenta" data-toggle="button" tabindex="-1" data-original-title="Magenta"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#F7C6CE" data-event="foreColor" data-value="#F7C6CE" title="" aria-label="Azalea" data-toggle="button" tabindex="-1" data-original-title="Azalea"></button><button type="button" class="note-color-btn" style="background-color:#FFE7CE" data-event="foreColor" data-value="#FFE7CE" title="" aria-label="Karry" data-toggle="button" tabindex="-1" data-original-title="Karry"></button><button type="button" class="note-color-btn" style="background-color:#FFEFC6" data-event="foreColor" data-value="#FFEFC6" title="" aria-label="Egg White" data-toggle="button" tabindex="-1" data-original-title="Egg White"></button><button type="button" class="note-color-btn" style="background-color:#D6EFD6" data-event="foreColor" data-value="#D6EFD6" title="" aria-label="Zanah" data-toggle="button" tabindex="-1" data-original-title="Zanah"></button><button type="button" class="note-color-btn" style="background-color:#CEDEE7" data-event="foreColor" data-value="#CEDEE7" title="" aria-label="Botticelli" data-toggle="button" tabindex="-1" data-original-title="Botticelli"></button><button type="button" class="note-color-btn" style="background-color:#CEE7F7" data-event="foreColor" data-value="#CEE7F7" title="" aria-label="Tropical Blue" data-toggle="button" tabindex="-1" data-original-title="Tropical Blue"></button><button type="button" class="note-color-btn" style="background-color:#D6D6E7" data-event="foreColor" data-value="#D6D6E7" title="" aria-label="Mischka" data-toggle="button" tabindex="-1" data-original-title="Mischka"></button><button type="button" class="note-color-btn" style="background-color:#E7D6DE" data-event="foreColor" data-value="#E7D6DE" title="" aria-label="Twilight" data-toggle="button" tabindex="-1" data-original-title="Twilight"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E79C9C" data-event="foreColor" data-value="#E79C9C" title="" aria-label="Tonys Pink" data-toggle="button" tabindex="-1" data-original-title="Tonys Pink"></button><button type="button" class="note-color-btn" style="background-color:#FFC69C" data-event="foreColor" data-value="#FFC69C" title="" aria-label="Peach Orange" data-toggle="button" tabindex="-1" data-original-title="Peach Orange"></button><button type="button" class="note-color-btn" style="background-color:#FFE79C" data-event="foreColor" data-value="#FFE79C" title="" aria-label="Cream Brulee" data-toggle="button" tabindex="-1" data-original-title="Cream Brulee"></button><button type="button" class="note-color-btn" style="background-color:#B5D6A5" data-event="foreColor" data-value="#B5D6A5" title="" aria-label="Sprout" data-toggle="button" tabindex="-1" data-original-title="Sprout"></button><button type="button" class="note-color-btn" style="background-color:#A5C6CE" data-event="foreColor" data-value="#A5C6CE" title="" aria-label="Casper" data-toggle="button" tabindex="-1" data-original-title="Casper"></button><button type="button" class="note-color-btn" style="background-color:#9CC6EF" data-event="foreColor" data-value="#9CC6EF" title="" aria-label="Perano" data-toggle="button" tabindex="-1" data-original-title="Perano"></button><button type="button" class="note-color-btn" style="background-color:#B5A5D6" data-event="foreColor" data-value="#B5A5D6" title="" aria-label="Cold Purple" data-toggle="button" tabindex="-1" data-original-title="Cold Purple"></button><button type="button" class="note-color-btn" style="background-color:#D6A5BD" data-event="foreColor" data-value="#D6A5BD" title="" aria-label="Careys Pink" data-toggle="button" tabindex="-1" data-original-title="Careys Pink"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E76363" data-event="foreColor" data-value="#E76363" title="" aria-label="Mandy" data-toggle="button" tabindex="-1" data-original-title="Mandy"></button><button type="button" class="note-color-btn" style="background-color:#F7AD6B" data-event="foreColor" data-value="#F7AD6B" title="" aria-label="Rajah" data-toggle="button" tabindex="-1" data-original-title="Rajah"></button><button type="button" class="note-color-btn" style="background-color:#FFD663" data-event="foreColor" data-value="#FFD663" title="" aria-label="Dandelion" data-toggle="button" tabindex="-1" data-original-title="Dandelion"></button><button type="button" class="note-color-btn" style="background-color:#94BD7B" data-event="foreColor" data-value="#94BD7B" title="" aria-label="Olivine" data-toggle="button" tabindex="-1" data-original-title="Olivine"></button><button type="button" class="note-color-btn" style="background-color:#73A5AD" data-event="foreColor" data-value="#73A5AD" title="" aria-label="Gulf Stream" data-toggle="button" tabindex="-1" data-original-title="Gulf Stream"></button><button type="button" class="note-color-btn" style="background-color:#6BADDE" data-event="foreColor" data-value="#6BADDE" title="" aria-label="Viking" data-toggle="button" tabindex="-1" data-original-title="Viking"></button><button type="button" class="note-color-btn" style="background-color:#8C7BC6" data-event="foreColor" data-value="#8C7BC6" title="" aria-label="Blue Marguerite" data-toggle="button" tabindex="-1" data-original-title="Blue Marguerite"></button><button type="button" class="note-color-btn" style="background-color:#C67BA5" data-event="foreColor" data-value="#C67BA5" title="" aria-label="Puce" data-toggle="button" tabindex="-1" data-original-title="Puce"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#CE0000" data-event="foreColor" data-value="#CE0000" title="" aria-label="Guardsman Red" data-toggle="button" tabindex="-1" data-original-title="Guardsman Red"></button><button type="button" class="note-color-btn" style="background-color:#E79439" data-event="foreColor" data-value="#E79439" title="" aria-label="Fire Bush" data-toggle="button" tabindex="-1" data-original-title="Fire Bush"></button><button type="button" class="note-color-btn" style="background-color:#EFC631" data-event="foreColor" data-value="#EFC631" title="" aria-label="Golden Dream" data-toggle="button" tabindex="-1" data-original-title="Golden Dream"></button><button type="button" class="note-color-btn" style="background-color:#6BA54A" data-event="foreColor" data-value="#6BA54A" title="" aria-label="Chelsea Cucumber" data-toggle="button" tabindex="-1" data-original-title="Chelsea Cucumber"></button><button type="button" class="note-color-btn" style="background-color:#4A7B8C" data-event="foreColor" data-value="#4A7B8C" title="" aria-label="Smalt Blue" data-toggle="button" tabindex="-1" data-original-title="Smalt Blue"></button><button type="button" class="note-color-btn" style="background-color:#3984C6" data-event="foreColor" data-value="#3984C6" title="" aria-label="Boston Blue" data-toggle="button" tabindex="-1" data-original-title="Boston Blue"></button><button type="button" class="note-color-btn" style="background-color:#634AA5" data-event="foreColor" data-value="#634AA5" title="" aria-label="Butterfly Bush" data-toggle="button" tabindex="-1" data-original-title="Butterfly Bush"></button><button type="button" class="note-color-btn" style="background-color:#A54A7B" data-event="foreColor" data-value="#A54A7B" title="" aria-label="Cadillac" data-toggle="button" tabindex="-1" data-original-title="Cadillac"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#9C0000" data-event="foreColor" data-value="#9C0000" title="" aria-label="Sangria" data-toggle="button" tabindex="-1" data-original-title="Sangria"></button><button type="button" class="note-color-btn" style="background-color:#B56308" data-event="foreColor" data-value="#B56308" title="" aria-label="Mai Tai" data-toggle="button" tabindex="-1" data-original-title="Mai Tai"></button><button type="button" class="note-color-btn" style="background-color:#BD9400" data-event="foreColor" data-value="#BD9400" title="" aria-label="Buddha Gold" data-toggle="button" tabindex="-1" data-original-title="Buddha Gold"></button><button type="button" class="note-color-btn" style="background-color:#397B21" data-event="foreColor" data-value="#397B21" title="" aria-label="Forest Green" data-toggle="button" tabindex="-1" data-original-title="Forest Green"></button><button type="button" class="note-color-btn" style="background-color:#104A5A" data-event="foreColor" data-value="#104A5A" title="" aria-label="Eden" data-toggle="button" tabindex="-1" data-original-title="Eden"></button><button type="button" class="note-color-btn" style="background-color:#085294" data-event="foreColor" data-value="#085294" title="" aria-label="Venice Blue" data-toggle="button" tabindex="-1" data-original-title="Venice Blue"></button><button type="button" class="note-color-btn" style="background-color:#311873" data-event="foreColor" data-value="#311873" title="" aria-label="Meteorite" data-toggle="button" tabindex="-1" data-original-title="Meteorite"></button><button type="button" class="note-color-btn" style="background-color:#731842" data-event="foreColor" data-value="#731842" title="" aria-label="Claret" data-toggle="button" tabindex="-1" data-original-title="Claret"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#630000" data-event="foreColor" data-value="#630000" title="" aria-label="Rosewood" data-toggle="button" tabindex="-1" data-original-title="Rosewood"></button><button type="button" class="note-color-btn" style="background-color:#7B3900" data-event="foreColor" data-value="#7B3900" title="" aria-label="Cinnamon" data-toggle="button" tabindex="-1" data-original-title="Cinnamon"></button><button type="button" class="note-color-btn" style="background-color:#846300" data-event="foreColor" data-value="#846300" title="" aria-label="Olive" data-toggle="button" tabindex="-1" data-original-title="Olive"></button><button type="button" class="note-color-btn" style="background-color:#295218" data-event="foreColor" data-value="#295218" title="" aria-label="Parsley" data-toggle="button" tabindex="-1" data-original-title="Parsley"></button><button type="button" class="note-color-btn" style="background-color:#083139" data-event="foreColor" data-value="#083139" title="" aria-label="Tiber" data-toggle="button" tabindex="-1" data-original-title="Tiber"></button><button type="button" class="note-color-btn" style="background-color:#003163" data-event="foreColor" data-value="#003163" title="" aria-label="Midnight Blue" data-toggle="button" tabindex="-1" data-original-title="Midnight Blue"></button><button type="button" class="note-color-btn" style="background-color:#21104A" data-event="foreColor" data-value="#21104A" title="" aria-label="Valentino" data-toggle="button" tabindex="-1" data-original-title="Valentino"></button><button type="button" class="note-color-btn" style="background-color:#4A1031" data-event="foreColor" data-value="#4A1031" title="" aria-label="Loulou" data-toggle="button" tabindex="-1" data-original-title="Loulou"></button></div></div></div>  <div>    <button type="button" class="note-color-select btn" data-event="openPalette" data-value="foreColorPicker">Select    </button>    <input type="color" id="foreColorPicker" class="note-btn note-color-select-btn" value="#000000" data-event="foreColorPalette">  <div class="note-holder-custom" id="foreColorPalette" data-event="foreColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button></div></div></div></div></div></div></div></div><div class="note-btn-group btn-group note-para"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Unordered list (CTRL+SHIFT+NUM7)" data-original-title="Unordered list (CTRL+SHIFT+NUM7)"><i class="note-icon-unorderedlist"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Ordered list (CTRL+SHIFT+NUM8)" data-original-title="Ordered list (CTRL+SHIFT+NUM8)"><i class="note-icon-orderedlist"></i></button><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Paragraph" data-original-title="Paragraph"><i class="note-icon-align-left"></i></button><div class="dropdown-menu" role="list"><div class="note-btn-group btn-group note-align"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Align left (CTRL+SHIFT+L)" data-original-title="Align left (CTRL+SHIFT+L)"><i class="note-icon-align-left"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Align center (CTRL+SHIFT+E)" data-original-title="Align center (CTRL+SHIFT+E)"><i class="note-icon-align-center"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Align right (CTRL+SHIFT+R)" data-original-title="Align right (CTRL+SHIFT+R)"><i class="note-icon-align-right"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Justify full (CTRL+SHIFT+J)" data-original-title="Justify full (CTRL+SHIFT+J)"><i class="note-icon-align-justify"></i></button></div><div class="note-btn-group btn-group note-list"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Outdent (CTRL+[)" data-original-title="Outdent (CTRL+[)"><i class="note-icon-align-outdent"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Indent (CTRL+])" data-original-title="Indent (CTRL+])"><i class="note-icon-align-indent"></i></button></div></div></div></div><div class="note-btn-group btn-group note-table"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Table" data-original-title="Table"><i class="note-icon-table"></i></button><div class="dropdown-menu note-table" role="list" aria-label="Table"><div class="note-dimension-picker">  <div class="note-dimension-picker-mousecatcher" data-event="insertTable" data-value="1x1" style="width: 10em; height: 10em;"></div>  <div class="note-dimension-picker-highlighted"></div>  <div class="note-dimension-picker-unhighlighted"></div></div><div class="note-dimension-display">1 x 1</div></div></div></div><div class="note-btn-group btn-group note-insert"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Link (CTRL+K)" data-original-title="Link (CTRL+K)"><i class="note-icon-link"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Picture" data-original-title="Picture"><i class="note-icon-picture"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Video" data-original-title="Video"><i class="note-icon-video"></i></button></div><div class="note-btn-group btn-group note-view"><button type="button" class="note-btn btn btn-light btn-sm btn-fullscreen" role="button" tabindex="-1" title="" aria-label="Full Screen" data-original-title="Full Screen"><i class="note-icon-arrows-alt"></i></button><button type="button" class="note-btn btn btn-light btn-sm btn-codeview" role="button" tabindex="-1" title="" aria-label="Code View" data-original-title="Code View"><i class="note-icon-code"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Help" data-original-title="Help"><i class="note-icon-question"></i></button></div></div><div class="note-editing-area"><div class="note-handle"><div class="note-control-selection"><div class="note-control-selection-bg"></div><div class="note-control-holder note-control-nw"></div><div class="note-control-holder note-control-ne"></div><div class="note-control-holder note-control-sw"></div><div class="note-control-sizing note-control-se"></div><div class="note-control-selection-info"></div></div></div><textarea class="note-codable" role="textbox" aria-multiline="true"></textarea><div class="note-editable card-block" contenteditable="true" role="textbox" aria-multiline="true" style="height: 250px;"><p><br></p></div></div><output class="note-status-output" aria-live="polite"></output><div class="note-statusbar" role="status">  <output class="note-status-output" aria-live="polite"></output>  <div class="note-resizebar" role="seperator" aria-orientation="horizontal" aria-label="Resize">    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>  </div></div><div class="modal link-dialog" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Insert Link"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Link</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body"><div class="form-group note-form-group"><label class="note-form-label">Text to display</label><input class="note-link-text form-control note-form-control note-input" type="text"></div><div class="form-group note-form-group"><label class="note-form-label">To what URL should this link go?</label><input class="note-link-url form-control note-form-control note-input" type="text" value="http://"></div><div class="form-check sn-checkbox-open-in-new-window"><label class="form-check-label"> <input role="checkbox" type="checkbox" class="form-check-input" checked="" aria-label="Open in new window" aria-checked="true"> Open in new window</label></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-link-btn" value="Insert Link" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Insert Image"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Image</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body"><div class="form-group note-form-group note-group-select-from-files"><label class="note-form-label">Select from files</label><input class="note-image-input note-form-control note-input" type="file" name="files" accept="image/*" multiple="multiple"></div><div class="form-group note-group-image-url" style="overflow:auto;"><label class="note-form-label">Image URL</label><input class="note-image-url form-control note-form-control note-input  col-md-12" type="text"></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-image-btn" value="Insert Image" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Insert Video"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Video</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body"><div class="form-group note-form-group row-fluid"><label class="note-form-label">Video URL <small class="text-muted">(YouTube, Vimeo, Vine, Instagram, DailyMotion or Youku)</small></label><input class="note-video-url form-control note-form-control note-input" type="text"></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-video-btn" value="Insert Video" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Help"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Help</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body" style="max-height: 300px; overflow: scroll;"><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>ENTER</kbd></label><span>Insert Paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Z</kbd></label><span>Undoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Y</kbd></label><span>Redoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>TAB</kbd></label><span>Tab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>SHIFT+TAB</kbd></label><span>Untab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+B</kbd></label><span>Set a bold style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+I</kbd></label><span>Set a italic style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+U</kbd></label><span>Set a underline style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+S</kbd></label><span>Set a strikethrough style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+BACKSLASH</kbd></label><span>Clean a style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+L</kbd></label><span>Set left align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+E</kbd></label><span>Set center align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+R</kbd></label><span>Set right align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+J</kbd></label><span>Set full align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM7</kbd></label><span>Toggle unordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM8</kbd></label><span>Toggle ordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+LEFTBRACKET</kbd></label><span>Outdent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+RIGHTBRACKET</kbd></label><span>Indent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM0</kbd></label><span>Change current block's format as a paragraph(P tag)</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM1</kbd></label><span>Change current block's format as H1</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM2</kbd></label><span>Change current block's format as H2</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM3</kbd></label><span>Change current block's format as H3</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM4</kbd></label><span>Change current block's format as H4</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM5</kbd></label><span>Change current block's format as H5</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM6</kbd></label><span>Change current block's format as H6</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+ENTER</kbd></label><span>Insert horizontal rule</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+K</kbd></label><span>Show Link Dialog</span></div>    <div class="modal-footer"><p class="text-center"><a href="http://summernote.org/" target="_blank">Summernote 0.8.11</a> · <a href="https://github.com/summernote/summernote" target="_blank">Project</a> · <a href="https://github.com/summernote/summernote/issues" target="_blank">Issues</a></p></div>  </div></div></div></div>
+                                    </div>
+                                    <div class="buttons-group col-12">
+                                        <button type="button" class="button button-outline button-round button-warning"><i class="zmdi zmdi-attachment-alt"></i> ضمیمه فایل</button>
+                                        <button type="button" class="button button-outline button-round button-info">ذخیره پیش نویس</button>
+                                        <button type="button" class="button button-round button-primary">ارسال ایمیل</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>        
+
+        <!-- Footer Section Start -->
+        <div class="footer-section">
+            <div class="container-fluid">
+
+                <div class="footer-copyright text-center">
+                    <p class="text-body-light">1398 &copy; <a href="https://www.rtl-theme.com/user-profile/tn_plugin/">جعفر عباسی</a></p>
+                </div>
+
+            </div>
+        </div><!-- Footer Section End -->
+
+    </div>
+
+    <!-- JS
+    ============================================ -->
+    <!-- Global Vendor, plugins & Activation JS -->
+    <script src="~/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="~/assets/js/vendor/jquery-3.3.1.min.js"></script>
+    <script src="~/assets/js/vendor/popper.min.js"></script>
+    <script src="~/assets/js/vendor/bootstrap.min.js"></script>
+    <!--Plugins JS-->
+    <script src="~/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="~/assets/js/plugins/tippy4.min.js.js"></script>
+    <!--Main JS-->
+    <script src="~/assets/js/main.js"></script>
+
+    <!-- Plugins & Activation JS For Only This Page -->
+    <script src="~/assets/js/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/assets/js/plugins/summernote/summernote.active.js"></script>
+
+</body>
+
+
+</html>

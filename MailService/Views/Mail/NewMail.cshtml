@@ -154,7 +154,11 @@
                                 <input asp-for="Subject" class="form-control" type="text" placeholder="موضوع">
                             </div>
                             <div class="col-12 mb-30">
-                                <textarea asp-for="Body" class="summernote"></textarea>
+                                <textarea asp-for="Body" class="summernote" id="mailBody"></textarea>
+                                <!--this script will save the plane text that user enter in the text area-->
+                                <script>
+
+                                </script>
                             </div>
                             <div class="buttons-group col-12">
                                 @*<a asp-action="SendMail" asp-controller="Mail" type="button" class="button button-outline button-round button-warning"><i class="zmdi zmdi-attachment-alt"></i> ضمیمه فایل</a>
