@@ -15,7 +15,11 @@ namespace MailService.Models
         public String Subject { get; set; }
         public String Body { get; set; }
         public bool IsRead { get; set; }
-        public SentMail Sender { get; set; }
-        public RecievedMail Reciever { get; set; }
+        public string Sender_id { get; set; }
+        [ForeignKey("Sender_id")]
+        public ApplicationUser Sender { get; set; }
+        public string Reciever_id { get; set; }
+        [ForeignKey("Reciever_id")]
+        public virtual ApplicationUser Reciever { get; set; }
     }
 }

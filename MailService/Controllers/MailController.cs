@@ -27,21 +27,24 @@ namespace MailService.Controllers
         public async Task<IActionResult> Inbox()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
-            return View(db.Mails.Include(x => x.Sender).ThenInclude(x => x.Sender).Where(x => x.Reciever.Reciever == user).OrderByDescending(x => x.SentDate).ToList());
+            return View(db.Mails.Include(x => x.Sender).Where(x => x.Reciever == user).OrderByDescending(x => x.SentDate).ToList());
         }
 
+        [Authorize]
         public async Task<IActionResult> ViewMail(int MailId)
         { 
-            return View(await db.Mails.Include(x => x.Sender).ThenInclude(x=>x.Sender).FirstOrDefaultAsync(x=>x.id == MailId));
+            return View(await db.Mails.Include(x => x.Sender).FirstOrDefaultAsync(x=>x.id == MailId));
         }
 
         //this action opens the mail compose page
+        [Authorize]
         public IActionResult NewMail()
         {
             return View();
         }
 
         //this method creates a new mail and save it into the database
+        [Authorize]
         public async Task<IActionResult> SendMail(NewMailViewModel model)
         {
             var reciever = await userManager.FindByEmailAsync(model.RecieverEmail);
@@ -53,8 +56,8 @@ namespace MailService.Controllers
                     Subject = model.Subject,
                     IsRead = false,
                     SentDate = DateTime.Now,
-                    Sender = new SentMail { Sender = await userManager.FindByNameAsync(User.Identity.Name) },
-                    Reciever = new RecievedMail { Reciever = reciever }
+                    Sender =  await userManager.FindByNameAsync(User.Identity.Name),
+                    Reciever = reciever
                 };
                 db.Mails.Add(mail);
                 await db.SaveChangesAsync();

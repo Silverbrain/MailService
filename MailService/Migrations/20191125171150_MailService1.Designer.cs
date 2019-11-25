@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MailService.Migrations
 {
     [DbContext(typeof(MailServiceContext))]
-    [Migration("20191124162342_MailService3")]
-    partial class MailService3
+    [Migration("20191125171150_MailService1")]
+    partial class MailService1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,53 +88,21 @@ namespace MailService.Migrations
 
                     b.Property<DateTime>("ReadDate");
 
+                    b.Property<string>("Reciever_id");
+
+                    b.Property<string>("Sender_id");
+
                     b.Property<DateTime>("SentDate");
 
                     b.Property<string>("Subject");
 
                     b.HasKey("id");
 
-                    b.ToTable("Mails");
-                });
-
-            modelBuilder.Entity("MailService.Models.RecievedMail", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Mail_id");
-
-                    b.Property<string>("Reciever_id");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Mail_id")
-                        .IsUnique();
-
                     b.HasIndex("Reciever_id");
-
-                    b.ToTable("RecievedMail");
-                });
-
-            modelBuilder.Entity("MailService.Models.SentMail", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Mail_id");
-
-                    b.Property<string>("Sender_id");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Mail_id")
-                        .IsUnique();
 
                     b.HasIndex("Sender_id");
 
-                    b.ToTable("SentMail");
+                    b.ToTable("Mails");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -251,24 +219,11 @@ namespace MailService.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MailService.Models.RecievedMail", b =>
+            modelBuilder.Entity("MailService.Models.Mail", b =>
                 {
-                    b.HasOne("MailService.Models.Mail", "Mail")
-                        .WithOne("Reciever")
-                        .HasForeignKey("MailService.Models.RecievedMail", "Mail_id")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("MailService.Areas.Identity.Data.ApplicationUser", "Reciever")
                         .WithMany("RecievedMails")
                         .HasForeignKey("Reciever_id");
-                });
-
-            modelBuilder.Entity("MailService.Models.SentMail", b =>
-                {
-                    b.HasOne("MailService.Models.Mail", "Mail")
-                        .WithOne("Sender")
-                        .HasForeignKey("MailService.Models.SentMail", "Mail_id")
-                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MailService.Areas.Identity.Data.ApplicationUser", "Sender")
                         .WithMany("SentMails")

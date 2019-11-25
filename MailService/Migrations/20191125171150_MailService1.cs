@@ -161,8 +161,11 @@ namespace MailService.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    SentDate = table.Column<DateTime>(nullable: false),
+                    ReadDate = table.Column<DateTime>(nullable: false),
                     Subject = table.Column<string>(nullable: true),
                     Body = table.Column<string>(nullable: true),
+                    IsRead = table.Column<bool>(nullable: false),
                     Sender_id = table.Column<string>(nullable: true),
                     Reciever_id = table.Column<string>(nullable: true)
                 },

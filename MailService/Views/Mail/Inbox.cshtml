@@ -22,7 +22,7 @@
             <div class="middle">
 
                 <div class="top">
-                    <h4 class="name"><a asp-action="ViewMail" asp-controller="Mail" asp-route-MailId="@item.id">@item.Sender.Sender.Name @item.Sender.Sender.Family</a></h4>
+                    <h4 class="name"><a asp-action="ViewMail" asp-controller="Mail" asp-route-MailId="@item.id">@item.Sender.Name @item.Sender.Family</a></h4>
                     <span class="date">@persianCalendar.GetYear(item.SentDate)/@persianCalendar.GetMonth(item.SentDate)/@persianCalendar.GetDayOfMonth(item.SentDate)  @persianCalendar.GetHour(item.SentDate):@persianCalendar.GetMinute(item.SentDate)</span>
                 </div>
 
