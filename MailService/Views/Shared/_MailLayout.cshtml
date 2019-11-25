@@ -459,7 +459,7 @@
 
                 <!--Mail Menu Start-->
                 <div class="mail-menu">
-                    <button class="button-compose-mail button button-danger button-round" data-toggle="modal" data-target="#modal-compose-mail">نوشتن نامه</button>
+                    <a class="button-compose-mail button button-danger button-round" asp-action="NewMail" asp-controller="Mail">نوشتن نامه</a>
                     <ul>
                         <li><a href="#"><i class="zmdi zmdi-email-open"></i> صندوق ورودی</a></li>
                         <li><a href="#"><i class="zmdi zmdi-mail-send"></i> ارسال ها</a></li>
@@ -526,20 +526,6 @@
 
                         <div class="mail-options-group">
                             <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
-                            <div class="adomx-dropdown">
-                                <button class="mail-button-snooze toggle"><i class="zmdi zmdi-alarm-snooze"></i></button>
-                                <ul class="adomx-dropdown-menu">
-                                    <li><span>تعویق تا..</span></li>
-                                    <li class="checked"><a href="#">امروز بعد <span class="ml-auto">6:00 قبل ظهر</span></a></li>
-                                    <li class="checked"><a href="#">فردا <span class="ml-auto">8:00 قبل ظهر</span></a></li>
-                                    <li class="checked"><a href="#">هفته بعد <span class="ml-auto">8:00 قبل ظهر</span></a></li>
-                                    <li class="checked"><a href="#">هفته های بعد <span class="ml-auto">8:00 قبل ظهر</span></a></li>
-                                    <li>
-                                        <hr>
-                                    </li>
-                                    <li><a href="#"><i class="zmdi zmdi-calendar"></i> تاریخ و زمان را انتخاب کنید</a></li>
-                                </ul>
-                            </div>
                             <div class="adomx-dropdown">
                                 <button class="mail-button-label toggle"><i class="zmdi zmdi-label"></i></button>
                                 <ul class="adomx-dropdown-menu">
