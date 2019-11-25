@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MailService.Migrations
 {
     [DbContext(typeof(MailServiceContext))]
-    [Migration("20191125171150_MailService1")]
-    partial class MailService1
+    [Migration("20191125184000_MailService2")]
+    partial class MailService2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,11 +76,26 @@ namespace MailService.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("MailService.Models.Folder", b =>
+                {
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Folder");
+                });
+
             modelBuilder.Entity("MailService.Models.Mail", b =>
                 {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Body");
 
@@ -103,6 +118,26 @@ namespace MailService.Migrations
                     b.HasIndex("Sender_id");
 
                     b.ToTable("Mails");
+                });
+
+            modelBuilder.Entity("MailService.Models.MailFolder", b =>
+                {
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Folder_id");
+
+                    b.Property<string>("Mail_id");
+
+                    b.Property<string>("User_id");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("Folder_id");
+
+                    b.HasIndex("Mail_id");
+
+                    b.ToTable("MailFolder");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -219,6 +254,13 @@ namespace MailService.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("MailService.Models.Folder", b =>
+                {
+                    b.HasOne("MailService.Areas.Identity.Data.ApplicationUser")
+                        .WithMany("Folders")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
             modelBuilder.Entity("MailService.Models.Mail", b =>
                 {
                     b.HasOne("MailService.Areas.Identity.Data.ApplicationUser", "Reciever")
@@ -228,6 +270,17 @@ namespace MailService.Migrations
                     b.HasOne("MailService.Areas.Identity.Data.ApplicationUser", "Sender")
                         .WithMany("SentMails")
                         .HasForeignKey("Sender_id");
+                });
+
+            modelBuilder.Entity("MailService.Models.MailFolder", b =>
+                {
+                    b.HasOne("MailService.Models.Folder", "Folder")
+                        .WithMany("Mails")
+                        .HasForeignKey("Folder_id");
+
+                    b.HasOne("MailService.Models.Mail", "Mail")
+                        .WithMany("Folders")
+                        .HasForeignKey("Mail_id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

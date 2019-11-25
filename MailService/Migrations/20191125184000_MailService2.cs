@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MailService.Migrations
 {
-    public partial class MailService1 : Migration
+    public partial class MailService2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -156,11 +156,29 @@ namespace MailService.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Folder",
+                columns: table => new
+                {
+                    id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Folder", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Folder_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Mails",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    id = table.Column<string>(nullable: false),
                     SentDate = table.Column<DateTime>(nullable: false),
                     ReadDate = table.Column<DateTime>(nullable: false),
                     Subject = table.Column<string>(nullable: true),
@@ -183,6 +201,32 @@ namespace MailService.Migrations
                         column: x => x.Sender_id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MailFolder",
+                columns: table => new
+                {
+                    id = table.Column<string>(nullable: false),
+                    Mail_id = table.Column<string>(nullable: true),
+                    Folder_id = table.Column<string>(nullable: true),
+                    User_id = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MailFolder", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_MailFolder_Folder_Folder_id",
+                        column: x => x.Folder_id,
+                        principalTable: "Folder",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MailFolder_Mails_Mail_id",
+                        column: x => x.Mail_id,
+                        principalTable: "Mails",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -226,6 +270,21 @@ namespace MailService.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Folder_ApplicationUserId",
+                table: "Folder",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MailFolder_Folder_id",
+                table: "MailFolder",
+                column: "Folder_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MailFolder_Mail_id",
+                table: "MailFolder",
+                column: "Mail_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Mails_Reciever_id",
                 table: "Mails",
                 column: "Reciever_id");
@@ -254,10 +313,16 @@ namespace MailService.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Mails");
+                name: "MailFolder");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Folder");
+
+            migrationBuilder.DropTable(
+                name: "Mails");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
