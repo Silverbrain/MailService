@@ -23,6 +23,7 @@ namespace MailService.Controllers
             db = _db;
         }
 
+        //this page show the mails list to the user _for now this is the default page_
         [Authorize]
         public async Task<IActionResult> Inbox()
         {
@@ -30,10 +31,11 @@ namespace MailService.Controllers
             return View(db.Mails.Include(x => x.Sender).Where(x => x.Reciever == user).OrderByDescending(x => x.SentDate).ToList());
         }
 
+        //in this page user can see a single mail
         [Authorize]
-        public async Task<IActionResult> ViewMail(int MailId)
-        { 
-            return View(await db.Mails.Include(x => x.Sender).FirstOrDefaultAsync(x=>x.id == MailId));
+        public async Task<IActionResult> ViewMail(string MailId)
+        {
+            return View(await db.Mails.Include(x => x.Sender).FirstOrDefaultAsync(x => x.id == MailId));
         }
 
         //this action opens the mail compose page
@@ -48,6 +50,8 @@ namespace MailService.Controllers
         public async Task<IActionResult> SendMail(NewMailViewModel model)
         {
             var reciever = await userManager.FindByEmailAsync(model.RecieverEmail);
+            var sender = await userManager.FindByNameAsync(User.Identity.Name);
+            
             if (reciever != null)
             {
                 Mail mail = new Mail
@@ -56,12 +60,21 @@ namespace MailService.Controllers
                     Subject = model.Subject,
                     IsRead = false,
                     SentDate = DateTime.Now,
-                    Sender =  await userManager.FindByNameAsync(User.Identity.Name),
-                    Reciever = reciever
+                    Sender = sender,
+                    Reciever = reciever,
+                    //this line initialize the list of folders that this mail will be inside theme.
+                    Folders = new List<MailFolder>()
                 };
+
+                //this line put this mail inside the senders sent folder
+                mail.Folders.Add(new MailFolder() { Folder = sender.Folders[1] });
+
+                //this line put this mail inside the recievers inbox folder
+                mail.Folders.Add(new MailFolder() { Folder = reciever.Folders[0] });
+
                 db.Mails.Add(mail);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Inbox","Mail");
+                return RedirectToAction("Inbox", "Mail");
             }
             else
             {

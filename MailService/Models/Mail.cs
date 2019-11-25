@@ -9,7 +9,7 @@ namespace MailService.Models
 {
     public class Mail
     {
-        public int id { get; set; }
+        public string id { get; set; } = Guid.NewGuid().ToString();
         public DateTime SentDate { get; set; }
         public DateTime ReadDate { get; set; }
         public String Subject { get; set; }
@@ -21,5 +21,6 @@ namespace MailService.Models
         public string Reciever_id { get; set; }
         [ForeignKey("Reciever_id")]
         public virtual ApplicationUser Reciever { get; set; }
+        public ICollection<MailFolder> Folders { get; set; }
     }
 }
