@@ -51,7 +51,7 @@ namespace MailService.Controllers
         {
             var reciever = await userManager.FindByEmailAsync(model.RecieverEmail);
             var sender = await userManager.FindByNameAsync(User.Identity.Name);
-            
+
             if (reciever != null)
             {
                 Mail mail = new Mail
@@ -67,10 +67,10 @@ namespace MailService.Controllers
                 };
 
                 //this line put this mail inside the senders sent folder
-                mail.Folders.Add(new MailFolder() { Folder = sender.Folders[1] });
+                mail.Folders.Add(new MailFolder() { Folder = sender.Folders[(int)Folder.DefaultFolder.Sent] });
 
                 //this line put this mail inside the recievers inbox folder
-                mail.Folders.Add(new MailFolder() { Folder = reciever.Folders[0] });
+                mail.Folders.Add(new MailFolder() { Folder = reciever.Folders[(int)Folder.DefaultFolder.Inbox] });
 
                 db.Mails.Add(mail);
                 await db.SaveChangesAsync();
