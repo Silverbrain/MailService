@@ -22,5 +22,8 @@ namespace MailService.Models
         [ForeignKey("Reciever_id")]
         public virtual ApplicationUser Reciever { get; set; }
         public ICollection<MailFolder> Folders { get; set; }
+        public string State_Id { get; set; }
+        [ForeignKey("State_Id")]
+        public States States { get; set; }
     }
 }
