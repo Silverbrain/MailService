@@ -14,6 +14,7 @@ namespace MailService.Models
         public DateTime ReadDate { get; set; }
         public String Subject { get; set; }
         public String Body { get; set; }
+        public String BodySummary { get; set; }
         public bool IsRead { get; set; }
         public string Sender_id { get; set; }
         [ForeignKey("Sender_id")]

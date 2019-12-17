@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace MailService.Controllers
 {
@@ -66,6 +67,23 @@ namespace MailService.Controllers
                     Folders = new List<MailFolder>()
                 };
 
+                 //Body Summary without HTMLTags
+                if (!string.IsNullOrEmpty(model.Body))
+                {
+                    model.Body = Regex.Replace(model.Body, "</p>", " ");
+                    model.Body = Regex.Replace(model.Body, "<.*?>", string.Empty);
+                    model.Body = Regex.Replace(model.Body, "&nbsp;", string.Empty);
+                    try
+                    {
+                       mail.BodySummary = model.Body.Substring(0,200);
+
+                    }
+                    catch (Exception)
+                    {
+
+                       mail.BodySummary=model.Body;
+                    }
+                }
                 //this line put this mail inside the senders sent folder
                 mail.Folders.Add(new MailFolder() { Folder = sender.Folders[(int)Folder.DefaultFolder.Sent] });
 
