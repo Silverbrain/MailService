@@ -18,16 +18,14 @@
                 <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
                 <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
             </div>
-
             <div class="middle">
-
                 <div class="top">
-                    <h4 class="name"><a asp-action="ViewMail" asp-controller="Mail" asp-route-MailId="@item.id">@item.Sender.Name @item.Sender.Family</a></h4>
+                    <h4 class="name"><a asp-action="ViewMail" asp-controller="Mail" asp-route-MailId="@item.id">@item.Subject | @item.Sender.Name @item.Sender.Family</a></h4>
                     <span class="date">@persianCalendar.GetYear(item.SentDate)/@persianCalendar.GetMonth(item.SentDate)/@persianCalendar.GetDayOfMonth(item.SentDate)  @persianCalendar.GetHour(item.SentDate):@persianCalendar.GetMinute(item.SentDate)</span>
                 </div>
 
-                <div class="body">
-                    <p>@item.Subject</p>
+                <div class="body">                   
+                 <p>@item.BodySummary</p>
                 </div>
 
                 <div class="bottom">
