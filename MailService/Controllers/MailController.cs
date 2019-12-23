@@ -45,6 +45,20 @@ namespace MailService.Controllers
         {
             return View();
         }
+        [Authorize]
+        public async Task<IActionResult> MailBox(string Choose)
+        {
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+            switch (Choose)
+            {
+                case "Inbox":
+                    return View("MailBox", db.Mails.Include(x => x.Sender).Where(x => x.Reciever == user).OrderByDescending(x => x.SentDate).ToList());
+                case "Sent":
+                    return View("MailBox", db.Mails.Include(x => x.Sender).Where(x => x.Sender == user).OrderByDescending(x => x.SentDate).ToList());
+                default:
+                    return BadRequest();
+            }
+        }
 
         //this method creates a new mail and save it into the database
         [Authorize]

@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Sent";
+    System.Globalization.PersianCalendar persianCalendar = new System.Globalization.PersianCalendar();
+    Layout = null;
+}
+@model List<Mail>
+<!--Mail List Start-->
+<div class="mail-list">
+    <!--Mail Start-->
+    @foreach (var item in Model)
+    {
+        <div class="mail">
+
+            <div class="left">
+                <label class="adomx-checkbox"><input type="checkbox"> <i class="icon"></i></label>
+                <button class="mail-button-starred"><i class="zmdi zmdi-star-outline"></i></button>
+            </div>
+            <div class="middle">
+                <div class="top">
+                    <h4 class="name"><a asp-action="ViewMail" asp-controller="Mail" asp-route-MailId="@item.id">@item.Subject | @item.Sender.Name @item.Sender.Family</a></h4>
+                    <span class="date">@persianCalendar.GetYear(item.SentDate)/@persianCalendar.GetMonth(item.SentDate)/@persianCalendar.GetDayOfMonth(item.SentDate)  @persianCalendar.GetHour(item.SentDate):@persianCalendar.GetMinute(item.SentDate)</span>
+                </div>
+
+                <div class="body">
+                    <p>@item.BodySummary</p>
+                </div>
+
+                <div class="bottom">
+                    <span class="badge badge-outline badge-danger">محرمانه</span>
+                    <span class="badge badge-outline badge-primary">عناصر</span>
+                </div>
+
+            </div>
+
+            <div class="right">
+                <button class="mail-button-delete"><i class="zmdi zmdi-delete"></i></button>
+                <div class="adomx-dropdown">
+                    <button class="mail-button-option toggle"><i class="zmdi zmdi-more-vert"></i></button>
+                    <ul class="adomx-dropdown-menu adomx-dropdown-menu-right">
+                        <li><a href="#">عمل</a></li>
+                        <li><a href="#">عمل دیگر</a></li>
+                        <li><a href="#">دیگر عمل ها</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    }
+    <!--Mail End-->
+</div>
+<!--Mail List End-->
