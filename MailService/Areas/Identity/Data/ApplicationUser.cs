@@ -20,13 +20,6 @@ namespace MailService.Areas.Identity.Data
         [InverseProperty("Reciever")]
         public ICollection<Mail> RecievedMails { get; set; }
 
-        //list of default folders that every user should have
-        public List<Folder> Folders { get; set; } = new List<Folder>() {
-            new Folder() {Name = "Inbox"},
-            new Folder() {Name = "Sent"},
-            new Folder() {Name = "Drafts"},
-            new Folder() {Name = "Favorites"},
-            new Folder() {Name = "Trash"}
-        };
+        public ICollection<Folder> Folders { get; set; }
     }
 }

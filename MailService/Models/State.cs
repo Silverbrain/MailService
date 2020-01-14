@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MailService.Models
 {
-    public class States
+    public class State
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Name { get; set; }

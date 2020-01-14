@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MailService.Areas.Identity.Data;
+using MailService.Models;
 using MailService.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ namespace MailService.Controllers
         public async Task<IActionResult> LogOut()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Login","Account");
+            return RedirectToAction("Login", "Account");
         }
 
         public IActionResult Login()
@@ -70,7 +71,15 @@ namespace MailService.Controllers
                     Name = model.Name,
                     Family = model.Family,
                     Email = model.Email,
-                    UserName = model.Email
+                    UserName = model.Email,
+                    //list of default folders that every user should have
+                    Folders = new List<Folder>() {
+                        new Folder() {Name = "Inbox"},
+                        new Folder() {Name = "Sent"},
+                        new Folder() {Name = "Drafts"},
+                        new Folder() {Name = "Favorites"},
+                        new Folder() {Name = "Trash"}
+                    }
                 };
                 var status = await userManager.CreateAsync(user, model.Password);
                 if (status.Succeeded)

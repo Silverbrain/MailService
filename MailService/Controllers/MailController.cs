@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
+using MailService.Services.Interfaces;
 
 namespace MailService.Controllers
 {
@@ -17,11 +18,13 @@ namespace MailService.Controllers
     {
         UserManager<ApplicationUser> userManager;
         MailServiceContext db;
+        IMailTransferService _transferService;
 
-        public MailController(UserManager<ApplicationUser> _userManager, MailServiceContext _db)
+        public MailController(UserManager<ApplicationUser> _userManager, MailServiceContext _db, IMailTransferService transferService)
         {
             userManager = _userManager;
             db = _db;
+            _transferService = transferService;
         }
 
         //this page show the mails list to the user _for now this is the default page_
@@ -29,15 +32,14 @@ namespace MailService.Controllers
         public async Task<IActionResult> Inbox()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
-            return View(db.Mails.Include(x => x.Sender).Where(x => x.Reciever == user).OrderByDescending(x => x.SentDate).ToList());
+            var mails = await _transferService.GetMailsAsync(user.Id);
+            return View(mails);
         }
 
         //in this page user can see a single mail
         [Authorize]
-        public async Task<IActionResult> ViewMail(string MailId)
-        {
-            return View(await db.Mails.Include(x => x.Sender).FirstOrDefaultAsync(x => x.id == MailId));
-        }
+        public async Task<IActionResult> ViewMail(string MailId) =>
+            View(await _transferService.FindMailByIdAsync(MailId));
 
         //this action opens the mail compose page
         [Authorize]
@@ -50,56 +52,8 @@ namespace MailService.Controllers
         [Authorize]
         public async Task<IActionResult> SendMail(NewMailViewModel model)
         {
-            var reciever = await userManager.FindByEmailAsync(model.RecieverEmail);
             var sender = await userManager.FindByNameAsync(User.Identity.Name);
-
-            if (reciever != null)
-            {
-                Mail mail = new Mail
-                {
-                    Body = model.Body,
-                    Subject = model.Subject,
-                    IsRead = false,
-                    SentDate = DateTime.Now,
-                    Sender = sender,
-                    Reciever = reciever,
-                    //this line initialize the list of folders that this mail will be inside theme.
-                    Folders = new List<MailFolder>()
-                };
-
-                 //Body Summary without HTMLTags
-                if (!string.IsNullOrEmpty(model.Body))
-                {
-                    model.Body = Regex.Replace(model.Body, "</p>", " ");
-                    model.Body = Regex.Replace(model.Body, "<.*?>", string.Empty);
-                    model.Body = Regex.Replace(model.Body, "&nbsp;", string.Empty);
-                    try
-                    {
-                       mail.BodySummary = model.Body.Substring(0,200);
-
-                    }
-                    catch (Exception)
-                    {
-
-                       mail.BodySummary=model.Body;
-                    }
-                }
-                //this line put this mail inside the senders sent folder
-                mail.Folders.Add(new MailFolder() { Folder = sender.Folders[(int)Folder.DefaultFolder.Sent] });
-
-                //this line put this mail inside the recievers inbox folder
-                mail.Folders.Add(new MailFolder() { Folder = reciever.Folders[(int)Folder.DefaultFolder.Inbox] });
-
-                db.Mails.Add(mail);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Inbox", "Mail");
-            }
-            else
-            {
-                //error message
-            }
-
-            return View();
+            return RedirectToAction("Inbox", "Mail");
         }
     }
 }

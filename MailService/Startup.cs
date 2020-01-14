@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MailService.Services.Classes;
+using MailService.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -43,6 +45,9 @@ namespace MailService
             });
 
             services.AddAuthentication();
+
+            // dependency injection section
+            services.AddSingleton<IMailTransferService, MailTransferService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

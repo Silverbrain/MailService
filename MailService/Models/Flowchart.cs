@@ -9,6 +9,6 @@ namespace MailService.Models
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Name { get; set; }
-        public ICollection<States> States { get; set; }
+        public ICollection<State> States { get; set; }
     }
 }

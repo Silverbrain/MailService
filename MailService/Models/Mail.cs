@@ -12,9 +12,9 @@ namespace MailService.Models
         public string id { get; set; } = Guid.NewGuid().ToString();
         public DateTime SentDate { get; set; }
         public DateTime ReadDate { get; set; }
-        public String Subject { get; set; }
-        public String Body { get; set; }
-        public String BodySummary { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
+        public string BodySummary { get; set; }
         public bool IsRead { get; set; }
         public string Sender_id { get; set; }
         [ForeignKey("Sender_id")]
@@ -22,9 +22,9 @@ namespace MailService.Models
         public string Reciever_id { get; set; }
         [ForeignKey("Reciever_id")]
         public virtual ApplicationUser Reciever { get; set; }
-        public ICollection<MailFolder> Folders { get; set; }
+        public ICollection<MailFolder> MailFolders { get; set; }
         public string State_Id { get; set; }
         [ForeignKey("State_Id")]
-        public States States { get; set; }
+        public State States { get; set; }
     }
 }

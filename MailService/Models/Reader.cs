@@ -12,6 +12,6 @@ namespace MailService.Models
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string State_Id { get; set; }
         [ForeignKey("State_Id")]
-        public States States { get; set; }
+        public State States { get; set; }
     }
 }
