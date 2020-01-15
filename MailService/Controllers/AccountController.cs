@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using MailService.Areas.Identity.Data;
 using MailService.Models;
 using MailService.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MailService.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AccountController : Controller
     {
         UserManager<ApplicationUser> userManager;
@@ -21,17 +23,20 @@ namespace MailService.Controllers
             signInManager = _SignInManager;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> LogOut()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
 
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> LoginConfirm(LoginViewModel model)
         {
             var user = await userManager.FindByEmailAsync(model.Email);

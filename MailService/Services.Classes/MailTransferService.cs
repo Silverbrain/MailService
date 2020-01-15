@@ -2,12 +2,15 @@
 using MailService.Models;
 using MailService.Services.Interfaces;
 using MailService.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -17,42 +20,57 @@ namespace MailService.Services.Classes
     {
         private readonly MailServiceContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ControllerBase _controller;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public enum Status
+        public Exception FailedToAddNewMailException
         {
-            Succeeded = 0,
-            Failed = 1
+            get => throw new Exception("Failed to add new mail to database.");
+            set => throw new NotImplementedException();
+        }
+        public Exception UserNotFoundException
+        {
+            get => throw new Exception("User not found.");
+            set => throw new NotImplementedException();
         }
 
-        public MailTransferService(MailServiceContext db, UserManager<ApplicationUser> userManager, ControllerBase controller)
+        public MailTransferService(MailServiceContext db, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContext)
         {
             _db = db;
             _userManager = userManager;
-            _controller = controller;
+            _httpContextAccessor = httpContext;
         }
         public async Task<Mail> FindMailByIdAsync(string MailId) =>
             await _db.Mails
             .Include(x => x.Sender)
             .FirstOrDefaultAsync(x => x.id == MailId);
 
-        public async Task<List<Mail>> GetMailsAsync(string userId) =>
-            await _db.Mails
-            .Where(x => x.Reciever_id == userId)
+        public async Task<List<Mail>> GetMailsAsync()
+        {
+            var user =await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
+
+            return await _db.Mails
+            .Where(x => x.Reciever_id == user.Id)
             .OrderByDescending(x => x.SentDate)
             .ToListAsync();
+        }
 
-        public async Task<List<Mail>> GetMailsAsync(string userId, string folderId) =>
-            await _db.MailFolders.Include(mf => mf.Mail)
-            .Where(mf => mf.Mail.Reciever_id == userId && mf.Folder_id == folderId)
+        public async Task<List<Mail>> GetMailsAsync(string folderId)
+        {
+            var user = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
+
+            return await _db.MailFolders.Include(mf => mf.Mail)
+            .Where(mf => mf.Mail.Reciever_id == user.Id && mf.Folder_id == folderId)
             .Select(mf => mf.Mail)
             .OrderByDescending(m => m.SentDate)
             .ToListAsync();
+        }
 
         public async Task<int> AddNewMailAsync(NewMailViewModel mailModel)
         {
-            var reciever = await _userManager.FindByEmailAsync(mailModel.RecieverEmail);
-            var sender = await _userManager.FindByNameAsync(_controller.User.Identity.Name);
+            var _reciever = await _userManager.FindByEmailAsync(mailModel.RecieverEmail);
+            var reciever = _db.Users.Where(x => x.Id == _reciever.Id).Include(x => x.Folders).FirstOrDefault();
+            var _sender = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
+            var sender = _db.Users.Where(x => x.Id == _sender.Id).Include(x => x.Folders).FirstOrDefault();
 
             if (reciever != null)
             {
@@ -85,10 +103,12 @@ namespace MailService.Services.Classes
                 }
 
                 //this line put this mail inside the senders sent folder
-                mail.MailFolders.Add(new MailFolder() { Folder = sender.Folders.ElementAt((int)Folder.DefaultFolder.Sent) });
+                //mail.MailFolders.Add(new MailFolder() { Folder = sender.Folders.ElementAt((int)Folder.DefaultFolder.Sent) });
+                mail = await MoveToFolderAsync(mail, sender.Folders.ElementAt((int)Folder.DefaultFolder.Sent));
 
                 //this line put this mail inside the recievers inbox folder
-                mail.MailFolders.Add(new MailFolder() { Folder = reciever.Folders.ElementAt((int)Folder.DefaultFolder.Inbox) });
+                //mail.MailFolders.Add(new MailFolder() { Folder = reciever.Folders.ElementAt((int)Folder.DefaultFolder.Inbox) });
+                mail = await MoveToFolderAsync(mail, reciever.Folders.ElementAt((int)Folder.DefaultFolder.Inbox));
 
                 try
                 {
@@ -96,21 +116,21 @@ namespace MailService.Services.Classes
                     await _db.SaveChangesAsync();
                     return (int)Status.Succeeded;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    return (int)Status.Failed;
+                    throw FailedToAddNewMailException;
                 }
             }
-            return (int)Status.Failed;
+            throw UserNotFoundException;
         }
 
         public async Task<Mail> MoveToFolderAsync(Mail mail, Folder folder)
         {
-            Task.Run(() => 
+            await Task.Run(() =>
             {
                 mail.MailFolders.Add(new MailFolder() { Folder = folder });
-            }).Wait();
-            
+            });
+
             return mail;
         }
     }

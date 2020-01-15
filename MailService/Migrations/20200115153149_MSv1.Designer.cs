@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MailService.Migrations
 {
     [DbContext(typeof(MailServiceContext))]
-    [Migration("20191217083008_MailService4")]
-    partial class MailService4
+    [Migration("20200115153149_MSv1")]
+    partial class MSv1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,7 +85,7 @@ namespace MailService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Flowchart");
+                    b.ToTable("Flowcharts");
                 });
 
             modelBuilder.Entity("MailService.Models.Folder", b =>
@@ -93,15 +93,15 @@ namespace MailService.Migrations
                     b.Property<string>("id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("Name");
+
+                    b.Property<string>("User_Id");
 
                     b.HasKey("id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("User_Id");
 
-                    b.ToTable("Folder");
+                    b.ToTable("Folders");
                 });
 
             modelBuilder.Entity("MailService.Models.Mail", b =>
@@ -155,7 +155,7 @@ namespace MailService.Migrations
 
                     b.HasIndex("Mail_id");
 
-                    b.ToTable("MailFolder");
+                    b.ToTable("MailFolders");
                 });
 
             modelBuilder.Entity("MailService.Models.Reader", b =>
@@ -169,10 +169,10 @@ namespace MailService.Migrations
 
                     b.HasIndex("State_Id");
 
-                    b.ToTable("Reader");
+                    b.ToTable("Readers");
                 });
 
-            modelBuilder.Entity("MailService.Models.States", b =>
+            modelBuilder.Entity("MailService.Models.State", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -304,9 +304,9 @@ namespace MailService.Migrations
 
             modelBuilder.Entity("MailService.Models.Folder", b =>
                 {
-                    b.HasOne("MailService.Areas.Identity.Data.ApplicationUser")
+                    b.HasOne("MailService.Areas.Identity.Data.ApplicationUser", "User")
                         .WithMany("Folders")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("User_Id");
                 });
 
             modelBuilder.Entity("MailService.Models.Mail", b =>
@@ -319,7 +319,7 @@ namespace MailService.Migrations
                         .WithMany("SentMails")
                         .HasForeignKey("Sender_id");
 
-                    b.HasOne("MailService.Models.States", "States")
+                    b.HasOne("MailService.Models.State", "States")
                         .WithMany("Mails")
                         .HasForeignKey("State_Id");
                 });
@@ -331,18 +331,18 @@ namespace MailService.Migrations
                         .HasForeignKey("Folder_id");
 
                     b.HasOne("MailService.Models.Mail", "Mail")
-                        .WithMany("Folders")
+                        .WithMany("MailFolders")
                         .HasForeignKey("Mail_id");
                 });
 
             modelBuilder.Entity("MailService.Models.Reader", b =>
                 {
-                    b.HasOne("MailService.Models.States", "States")
+                    b.HasOne("MailService.Models.State", "States")
                         .WithMany("Readers")
                         .HasForeignKey("State_Id");
                 });
 
-            modelBuilder.Entity("MailService.Models.States", b =>
+            modelBuilder.Entity("MailService.Models.State", b =>
                 {
                     b.HasOne("MailService.Models.Flowchart", "Flowchart")
                         .WithMany("States")

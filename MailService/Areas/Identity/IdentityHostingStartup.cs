@@ -22,8 +22,8 @@ namespace MailService.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("MailServiceContextConnection")));
 
-                services.AddDefaultIdentity<ApplicationUser>()
-                    .AddEntityFrameworkStores<MailServiceContext>();
+                //services.AddDefaultIdentity<ApplicationUser>()
+                //    .AddEntityFrameworkStores<MailServiceContext>();
 
                 services.ConfigureApplicationCookie(x =>
                 {
