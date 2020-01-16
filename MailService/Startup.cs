@@ -12,10 +12,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace MailService
 {
@@ -54,21 +54,21 @@ namespace MailService
             services.AddHttpContextAccessor();
 
             // dependency injection section
-            services.AddSingleton<IMailTransferService, MailTransferService>();
             services.AddTransient<IMailTransferService, MailTransferService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MailServiceContext>()
                 .AddDefaultTokenProviders();
-            
+
             services.AddDbContext<MailServiceContext>();
             services.AddAuthentication();
             services.AddAuthorization();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -86,17 +86,18 @@ namespace MailService
                 scope.ServiceProvider.GetService<MailServiceContext>().Database.Migrate();
             }
 
+            app.UseRouting();
             app.UseHttpsRedirection();
             app.UseHttpMethodOverride();
             app.UseStaticFiles();
             app.UseAuthentication();
+            app.UseAuthorization();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Mail}/{action=Inbox}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Account}/{action=Login}/{id?}");
             });
+
             app.UseCookiePolicy();
 
             CreateRolesAsync(serviceProvider).Wait();
@@ -113,14 +114,14 @@ namespace MailService
             {
                 var roleExist = await _roleManager.RoleExistsAsync(role);
 
-                if(!roleExist)
+                if (!roleExist)
                 {
                     roleResult = await _roleManager.CreateAsync(new IdentityRole(role));
                 }
             }
 
             var _adminUser = await _userManager.FindByNameAsync("Admin");
-            if(_adminUser == null)
+            if (_adminUser == null)
             {
                 var adminUser = new ApplicationUser
                 {

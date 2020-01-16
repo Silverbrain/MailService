@@ -53,7 +53,7 @@ namespace MailService.Controllers
                 else
                     throw new Exception();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToAction("Inbox", "Mail");
             }
