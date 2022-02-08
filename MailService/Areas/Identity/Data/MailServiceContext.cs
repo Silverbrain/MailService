@@ -25,5 +25,10 @@ namespace MailService.Models
         }
      
         public DbSet<Mail> Mails { get; set; }
+        public DbSet<MailFolder> MailFolders { get; set; }
+        public DbSet<Folder> Folders { get; set; }
+        public DbSet<Reader> Readers { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<Flowchart> Flowcharts { get; set; }
     }
 }

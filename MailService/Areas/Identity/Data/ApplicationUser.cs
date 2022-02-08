@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using MailService.Models;
@@ -13,8 +14,12 @@ namespace MailService.Areas.Identity.Data
         public String Name { get; set; }
         public String Family { get; set; }
 
-        //Unable to determine the relationship represented by navigation property 'ApplicationUser.Mails'
-        public ICollection<SentMail> SentMails { get; set; }
-        public ICollection<RecievedMail> RecievedMails { get; set; }
+        //Unable to determine the relationship represented by navigation property 'ApplicationUser.Mails' (fixed!!!)
+        [InverseProperty("Sender")]
+        public ICollection<Mail> SentMails { get; set; }
+        [InverseProperty("Reciever")]
+        public ICollection<Mail> RecievedMails { get; set; }
+
+        public ICollection<Folder> Folders { get; set; }
     }
 }

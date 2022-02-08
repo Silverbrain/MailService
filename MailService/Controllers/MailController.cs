@@ -9,31 +9,31 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
+using MailService.Services.Interfaces;
 
 namespace MailService.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class MailController : Controller
     {
-        UserManager<ApplicationUser> userManager;
-        MailServiceContext db;
+        IMailTransferService _transferService;
 
-        public MailController(UserManager<ApplicationUser> _userManager, MailServiceContext _db)
+        public MailController(IMailTransferService transferService)
         {
-            userManager = _userManager;
-            db = _db;
+            _transferService = transferService;
         }
 
-        [Authorize]
+        //this page show the mails list to the user _for now this is the default page_
         public async Task<IActionResult> Inbox()
         {
-            var user = await userManager.FindByNameAsync(User.Identity.Name);
-            return View(db.Mails.Include(x => x.Sender).ThenInclude(x => x.Sender).Where(x => x.Reciever.Reciever == user).OrderByDescending(x => x.SentDate).ToList());
+            var mails = await _transferService.GetMailsAsync();
+            return View(mails);
         }
 
-        public async Task<IActionResult> ViewMail(int MailId)
-        { 
-            return View(await db.Mails.Include(x => x.Sender).ThenInclude(x=>x.Sender).FirstOrDefaultAsync(x=>x.id == MailId));
-        }
+        //in this page user can see a single mail
+        public async Task<IActionResult> ViewMail(string MailId) =>
+            View(await _transferService.FindMailByIdAsync(MailId));
 
         //this action opens the mail compose page
         public IActionResult NewMail()
@@ -44,28 +44,19 @@ namespace MailService.Controllers
         //this method creates a new mail and save it into the database
         public async Task<IActionResult> SendMail(NewMailViewModel model)
         {
-            var reciever = await userManager.FindByEmailAsync(model.RecieverEmail);
-            if (reciever != null)
+            try
             {
-                Mail mail = new Mail
-                {
-                    Body = model.Body,
-                    Subject = model.Subject,
-                    IsRead = false,
-                    SentDate = DateTime.Now,
-                    Sender = new SentMail { Sender = await userManager.FindByNameAsync(User.Identity.Name) },
-                    Reciever = new RecievedMail { Reciever = reciever }
-                };
-                db.Mails.Add(mail);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Inbox","Mail");
+                var status = await _transferService.AddNewMailAsync(model);
+                
+                if (status == (int)Status.Succeeded)
+                    return RedirectToAction("Inbox", "Mail");
+                else
+                    throw new Exception();
             }
-            else
+            catch (Exception)
             {
-                //error message
+                return RedirectToAction("Inbox", "Mail");
             }
-
-            return View();
         }
     }
 }

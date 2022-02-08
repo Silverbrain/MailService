@@ -9,13 +9,22 @@ namespace MailService.Models
 {
     public class Mail
     {
-        public int id { get; set; }
+        public string id { get; set; } = Guid.NewGuid().ToString();
         public DateTime SentDate { get; set; }
         public DateTime ReadDate { get; set; }
-        public String Subject { get; set; }
-        public String Body { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
+        public string BodySummary { get; set; }
         public bool IsRead { get; set; }
-        public SentMail Sender { get; set; }
-        public RecievedMail Reciever { get; set; }
+        public string Sender_id { get; set; }
+        [ForeignKey("Sender_id")]
+        public ApplicationUser Sender { get; set; }
+        public string Reciever_id { get; set; }
+        [ForeignKey("Reciever_id")]
+        public virtual ApplicationUser Reciever { get; set; }
+        public ICollection<MailFolder> MailFolders { get; set; }
+        public string State_Id { get; set; }
+        [ForeignKey("State_Id")]
+        public State States { get; set; }
     }
 }

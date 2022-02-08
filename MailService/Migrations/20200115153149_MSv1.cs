@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MailService.Migrations
 {
-    public partial class MailService1 : Migration
+    public partial class MSv1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,6 +47,18 @@ namespace MailService.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Flowcharts",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Flowcharts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,15 +168,57 @@ namespace MailService.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Folders",
+                columns: table => new
+                {
+                    id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    User_Id = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Folders", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Folders_AspNetUsers_User_Id",
+                        column: x => x.User_Id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "States",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Flowchart_Id = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_States", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_States_Flowcharts_Flowchart_Id",
+                        column: x => x.Flowchart_Id,
+                        principalTable: "Flowcharts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Mails",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    id = table.Column<string>(nullable: false),
+                    SentDate = table.Column<DateTime>(nullable: false),
+                    ReadDate = table.Column<DateTime>(nullable: false),
                     Subject = table.Column<string>(nullable: true),
                     Body = table.Column<string>(nullable: true),
+                    BodySummary = table.Column<string>(nullable: true),
+                    IsRead = table.Column<bool>(nullable: false),
                     Sender_id = table.Column<string>(nullable: true),
-                    Reciever_id = table.Column<string>(nullable: true)
+                    Reciever_id = table.Column<string>(nullable: true),
+                    State_Id = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -180,6 +234,56 @@ namespace MailService.Migrations
                         column: x => x.Sender_id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Mails_States_State_Id",
+                        column: x => x.State_Id,
+                        principalTable: "States",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Readers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    State_Id = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Readers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Readers_States_State_Id",
+                        column: x => x.State_Id,
+                        principalTable: "States",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MailFolders",
+                columns: table => new
+                {
+                    id = table.Column<string>(nullable: false),
+                    Mail_id = table.Column<string>(nullable: true),
+                    Folder_id = table.Column<string>(nullable: true),
+                    User_id = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MailFolders", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_MailFolders_Folders_Folder_id",
+                        column: x => x.Folder_id,
+                        principalTable: "Folders",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MailFolders_Mails_Mail_id",
+                        column: x => x.Mail_id,
+                        principalTable: "Mails",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -223,6 +327,21 @@ namespace MailService.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Folders_User_Id",
+                table: "Folders",
+                column: "User_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MailFolders_Folder_id",
+                table: "MailFolders",
+                column: "Folder_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MailFolders_Mail_id",
+                table: "MailFolders",
+                column: "Mail_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Mails_Reciever_id",
                 table: "Mails",
                 column: "Reciever_id");
@@ -231,6 +350,21 @@ namespace MailService.Migrations
                 name: "IX_Mails_Sender_id",
                 table: "Mails",
                 column: "Sender_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Mails_State_Id",
+                table: "Mails",
+                column: "State_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Readers_State_Id",
+                table: "Readers",
+                column: "State_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_States_Flowchart_Id",
+                table: "States",
+                column: "Flowchart_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -251,13 +385,28 @@ namespace MailService.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Mails");
+                name: "MailFolders");
+
+            migrationBuilder.DropTable(
+                name: "Readers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Folders");
+
+            migrationBuilder.DropTable(
+                name: "Mails");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "States");
+
+            migrationBuilder.DropTable(
+                name: "Flowcharts");
         }
     }
 }

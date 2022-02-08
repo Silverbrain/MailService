@@ -13,7 +13,7 @@
         <!--Left-->
         <div class="left">
             <ul>
-                <li><strong>از طرف</strong> <span>@Model.Sender.Sender.Email</span></li>
+                <li><strong>از طرف</strong> <span>@Model.Sender.Email</span></li>
                 <li><strong>موضوع</strong> <span>@Model.Subject</span></li>
             </ul>
         </div>
@@ -28,7 +28,7 @@
         <!--User Start-->
         <div class="user">
             <div class="info">
-                <h5 class="name">@Model.Sender.Sender.Name @Model.Sender.Sender.Family</h5>
+                <h5 class="name">@Model.Sender.Name @Model.Sender.Family</h5>
                 <span class="date">@persianCalendar.GetYear(Model.SentDate)/@persianCalendar.GetMonth(Model.SentDate)/@persianCalendar.GetDayOfMonth(Model.SentDate) @persianCalendar.GetHour(Model.SentDate):@persianCalendar.GetMinute(Model.SentDate)</span>
             </div>
         </div>

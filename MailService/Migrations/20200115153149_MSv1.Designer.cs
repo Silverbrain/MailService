@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MailService.Migrations
 {
     [DbContext(typeof(MailServiceContext))]
-    [Migration("20191124162342_MailService3")]
-    partial class MailService3
+    [Migration("20200115153149_MSv1")]
+    partial class MSv1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,65 +76,116 @@ namespace MailService.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("MailService.Models.Flowchart", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Flowcharts");
+                });
+
+            modelBuilder.Entity("MailService.Models.Folder", b =>
+                {
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("User_Id");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("User_Id");
+
+                    b.ToTable("Folders");
+                });
+
             modelBuilder.Entity("MailService.Models.Mail", b =>
                 {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Body");
+
+                    b.Property<string>("BodySummary");
 
                     b.Property<bool>("IsRead");
 
                     b.Property<DateTime>("ReadDate");
 
+                    b.Property<string>("Reciever_id");
+
+                    b.Property<string>("Sender_id");
+
                     b.Property<DateTime>("SentDate");
+
+                    b.Property<string>("State_Id");
 
                     b.Property<string>("Subject");
 
                     b.HasKey("id");
 
-                    b.ToTable("Mails");
-                });
-
-            modelBuilder.Entity("MailService.Models.RecievedMail", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Mail_id");
-
-                    b.Property<string>("Reciever_id");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Mail_id")
-                        .IsUnique();
-
                     b.HasIndex("Reciever_id");
-
-                    b.ToTable("RecievedMail");
-                });
-
-            modelBuilder.Entity("MailService.Models.SentMail", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Mail_id");
-
-                    b.Property<string>("Sender_id");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Mail_id")
-                        .IsUnique();
 
                     b.HasIndex("Sender_id");
 
-                    b.ToTable("SentMail");
+                    b.HasIndex("State_Id");
+
+                    b.ToTable("Mails");
+                });
+
+            modelBuilder.Entity("MailService.Models.MailFolder", b =>
+                {
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Folder_id");
+
+                    b.Property<string>("Mail_id");
+
+                    b.Property<string>("User_id");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("Folder_id");
+
+                    b.HasIndex("Mail_id");
+
+                    b.ToTable("MailFolders");
+                });
+
+            modelBuilder.Entity("MailService.Models.Reader", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("State_Id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("State_Id");
+
+                    b.ToTable("Readers");
+                });
+
+            modelBuilder.Entity("MailService.Models.State", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Flowchart_Id");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Flowchart_Id");
+
+                    b.ToTable("States");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -251,28 +302,51 @@ namespace MailService.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MailService.Models.RecievedMail", b =>
+            modelBuilder.Entity("MailService.Models.Folder", b =>
                 {
-                    b.HasOne("MailService.Models.Mail", "Mail")
-                        .WithOne("Reciever")
-                        .HasForeignKey("MailService.Models.RecievedMail", "Mail_id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("MailService.Areas.Identity.Data.ApplicationUser", "User")
+                        .WithMany("Folders")
+                        .HasForeignKey("User_Id");
+                });
 
+            modelBuilder.Entity("MailService.Models.Mail", b =>
+                {
                     b.HasOne("MailService.Areas.Identity.Data.ApplicationUser", "Reciever")
                         .WithMany("RecievedMails")
                         .HasForeignKey("Reciever_id");
-                });
-
-            modelBuilder.Entity("MailService.Models.SentMail", b =>
-                {
-                    b.HasOne("MailService.Models.Mail", "Mail")
-                        .WithOne("Sender")
-                        .HasForeignKey("MailService.Models.SentMail", "Mail_id")
-                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MailService.Areas.Identity.Data.ApplicationUser", "Sender")
                         .WithMany("SentMails")
                         .HasForeignKey("Sender_id");
+
+                    b.HasOne("MailService.Models.State", "States")
+                        .WithMany("Mails")
+                        .HasForeignKey("State_Id");
+                });
+
+            modelBuilder.Entity("MailService.Models.MailFolder", b =>
+                {
+                    b.HasOne("MailService.Models.Folder", "Folder")
+                        .WithMany("Mails")
+                        .HasForeignKey("Folder_id");
+
+                    b.HasOne("MailService.Models.Mail", "Mail")
+                        .WithMany("MailFolders")
+                        .HasForeignKey("Mail_id");
+                });
+
+            modelBuilder.Entity("MailService.Models.Reader", b =>
+                {
+                    b.HasOne("MailService.Models.State", "States")
+                        .WithMany("Readers")
+                        .HasForeignKey("State_Id");
+                });
+
+            modelBuilder.Entity("MailService.Models.State", b =>
+                {
+                    b.HasOne("MailService.Models.Flowchart", "Flowchart")
+                        .WithMany("States")
+                        .HasForeignKey("Flowchart_Id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
