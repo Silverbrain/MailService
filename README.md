@@ -11,3 +11,7 @@ an inter-organization mail transfer service that allows you to send your organiz
 ## License
 
 [MIT](https://github.com/Silverbrain/MailService/blob/development/LICENSE)
+
+# MailService
+
+we are going to make an organizational mail transfering system that could handle complicated relations between deferent type of users.
